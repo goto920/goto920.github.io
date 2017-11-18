@@ -1,2 +1,2 @@
-# goto920.git.hub.io
+# goto920.github.io
 Project Web Page
