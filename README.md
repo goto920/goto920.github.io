@@ -1,4 +1,6 @@
 # goto920.github.io
 Project Web Page
 
-index.html
+demos/metronome
+
+docs/metronome/performance.html
