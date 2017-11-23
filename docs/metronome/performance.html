@@ -11,28 +11,32 @@
 
 <OL>
 <LI>Recorder: Zoom H2n (Analog input to 24bit 44.1kHz wav file) 
-<LI>Reference time: telephone service 60bpm click and voice (Japanese Standard Time)
+<LI>Reference time: telephone service 60bpm click and voice (Japanese Standard Time by dial 117)<BR>
+In the US
+<A HREF="https://www.nist.gov/pml/time-and-frequency-division/services/telephone-time-day-ttds">
+https://www.nist.gov/pml/time-and-frequency-division/services/telephone-time-day-ttds
+</A>
 <LI>Onset Detection: aubioonset -i input.wav 
 <LI>My metronome written in JavaScript:
 <A HREF="http://goto920.github.io/demos/metronome">http://goto920.github.io/demos/metronome</A>
 <UL>
 <LI>Installation is not necessary. Just access the URL.
-<LI>Network connection is NOT necessary after files are onece cached 
+<LI>Network connection is NOT necessary after files are once cached 
 on your web browser.
 <LI>Hopefully it will run on any web browser of recent devices.
 <LI>
 It runs on my Linux(Firefox), Windows10(Edge), Android(Chrome).
 <LI>I have not tested the program on iPhone because I do not have one. 
 </UL>
-<LI>Source code: 
+<LI>Source code: metronome in
 <A HREF="https://github.com/goto920/nodejs">
-metronome in https://github.com/goto920/nodejs/metronome</A>
+https://github.com/goto920/nodejs/metronome</A>
 </OL>
 
 <HR>
 <TT>
 <PRE>
-Onset (result)
+Onset of Reference click(telephone service)
 14.929614 # 0 sec of a minute
 15.926462
 (omit)
@@ -61,16 +65,22 @@ timefix = 0.999634855237734 is used in the following recorded metronome sound sa
 <HR>
 <H2>1. 4/4 beat (at 60, 120, 180, 240bpm)</H2>
 
+Here BPM(beat/minutes) is based on quarter note.
+Therefore, there are 60 notes in a minutes at 60bpm.
+
 <H3>Tested Metronomes</H3>
 
 <OL>
-<LI>Roland RMP5 (mesh head snare pad) as an example of good metronome
-<LI>TempoApp on Android as an example of smartphone App
-<LI>The JavaScript Metronome
+<LI>(Best) Roland RMP5 (mesh head snare pad) as an example of good metronome
+<LI>(Excellent except for 180bpm) 
+TempoApp on Android as an example of smartphone App
+<LI>The JavaScript metronome
 <OL>
-<LI>Old Linux PC (developement PC)
-<LI>Windows 10 (Microsoft Surface Pro3, latest Win10 release)
-<LI>Android phone (Sony SO-02H, compact but good one. Purchased in Nov. 2015)
+<LI>(The first note delays) Old Linux PC (developement PC)
+<LI>(Good) 
+Windows 10 (Microsoft Surface Pro3, latest Win10 release)
+<LI>(Surprisingly good enough)
+Android phone (Sony SO-02H, compact but good one. Purchased in Nov. 2015)
 </OL>
 </OL>
 
@@ -187,6 +197,17 @@ Reason is unknown.</FONT>
 
 <H2>2. 8/8 swing beat</H2>
 
+<OL>
+<LI>8 swing notes in a bar(measure)<BR>
+<TT>
+|o-oo-oo-oo-o|o-oo-oo-oo-o|o-oo-oo-oo-o|o-oo-oo-oo-o| (4 bars)
+</TT>
+<LI>120, 240, 360, 480 notes per minutes at 60, 120, 180, 240 bpm respectively.
+<LI>The results are similar to 4/4 beat test.
+<LI>
+</OL>
+
+<HR>
 <IMG SRC="60bpm-swing.png"><BR>
 <B>Fig.2-1 60bpm(1 min)</B>
 <HR>
