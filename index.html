@@ -5,11 +5,54 @@
 </HEAD>
 <BODY>
 
+
+<H2>1. JavaScript metronome demo</H2>
+
+The progmam starts immediately after you click the 
+<A HREF="demos/metronome">
+https://goto920.github.io/demos/metronome/</A>.<BR>
+Source code: <A HREF="https://github.com/goto920/nodejs/metronome">
+https://github.com/goto920/nodejs/metronome/</A>.<BR>
+<BR>
+
+<TABLE BORDER=3>
+<TR>
+<TH>Screen shot
+<TH>Description
+</TR>
+<TR>
+<TD><IMG SRC="metronome.png">
+<TD>
+<H3>Basic Operation -- Select Beat, Adjust BPM, then press Start</H3>
 <OL>
-<LI><A HREF="demos/metronome">JavaScript metronome demo</A>
-(The progmam starts immediately after you click the link.)
-<LI><A HREF="docs/metronome/performance.html">Metronome performance test</A>
+<LI>Select Beat: 4/4, 6/8, 8/8 swing etc.
+<LI>(My) voice(default off):  My voice of 1, 2, 3, 4 
+in addition to cowbels
+<LI>Adjust bpm(0.1 step) with the range slider (play continues)<BR />
+or enter/modify number (play stops)
+<LI>Start/Stop 
+<LI>Timer(sec): Similar to kitchen timer.
+Set positive number for expiration time in second.
+The timer pauses when the metronome is stopped.
+Set 0 to disable the timer.
 </OL>
+
+<H3>Advanced Options</H3>
+<OL>
+<LI>Swing adjust(0.0 to 3.0): 1.5(straight), 2.0(full swing)
+<LI>Increment: automatic bpm step up. <BR>
+Set  bpm and bars (set 0 to stop)
+<LI>Mute: mute bar(s) at the probability set.<BR>
+Note: Always sound is turned on after the mute bar length. <BR>
+For example, 1 bar(s) at prob. 1.0 gives alternate on/off.
+</OL>
+</TR>
+</TABLE>
+
+<HR>
+<H2>2. Metronome performance test</H2>
+
+<A HREF="docs/metronome/performance.html">Metronome performance test</A>
 
 <HR>
 goto at kmgoto.jp
