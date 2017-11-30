@@ -53,11 +53,22 @@ Set 0 to disable the timer.
 </PRE>
 </TT>
 <LI>Increment: automatic bpm step up. <BR>
-Set  bpm and bars (set 0 to stop)
-<LI>Mute: mute bar(s) at the probability set.<BR>
+Set  bpm and bars (set 0 to disable)
+<LI>Mute: Set duration in bar(s) and the probability
+(Set 0 for bar(s) to disable).<BR>
 Note: Always sound is turned on after the mute bar length. <BR>
-For example, 1 bar(s) at prob. 1.0 gives alternate on/off.
-<LI>Even notes vol 
+For example, 1 bar(s) at prob. 1.0 gives alternate on/off.<BR>
+<LI>Even notes volume.
+<TT>
+<PRE>
+O: full volume 
+x: muted(0.0) or quiet(0.1))
+----------------------
+4/4 : x O x O 
+8/8 : x O x O x O x O
+12/8: x x O x x O x x O x x O (this 12/8 is triplet x 4 times in a bar)
+</PRE>
+</TT>
 </OL>
 </TR>
 </TABLE>
