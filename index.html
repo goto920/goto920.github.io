@@ -5,88 +5,24 @@
 </HEAD>
 <BODY>
 
-
 <H2>1. JavaScript metronome demo (click screen shot to start)</H2>
 
-The progmam starts immediately after you click the link
-<A HREF="demos/metronome">
-https://goto920.github.io/demos/metronome/</A>.<BR>
+
+<OL>
+<LI>User guide: <A HREF="guide.html">English</A>,
+<A HREF="guide-jp.html">日本語</A>
+<UL>
+<LI><A HREF="demos/metronome/">20171202</A>(stable)
+<LI><A HREF="demos/metronome20171210/">20171210</A>
+(in develepement)
+</UL>
+<LI>Source code <A HREF="https://github.com/goto920/nodejs/metronome">
+https://github.com/goto920/nodejs/metronome/</A>
+<LI><A HREF="docs/metronome/performance.html">Performance test</A>
+</OL>
+
 Network connection is NOT required after the program and audio samples
 are cached in your Web browser. Data size is less than 1MB.
-<BR>
-Source code: <A HREF="https://github.com/goto920/nodejs/metronome">
-https://github.com/goto920/nodejs/metronome/</A>.<BR>
-<BR>
-
-<TABLE BORDER=3>
-<TR>
-<TH>Screen shot
-<TH>Description
-</TR>
-<TR>
-<TD BGCOLOR="#888888">
-<FONT SIZE="5" COLOR="white">Click the image below to start!</FONT><BR>
-<A HREF="demos/metronome"><IMG SRC="metronome.png" BORDER="1"></A>
-<TD>
-<H3>Basic Operation -- Select Beat, Adjust BPM, then press Start</H3>
-<OL>
-<LI>Select Beat: 4/4, 6/8, 8/8 swing etc.
-<LI>Sound selection:  Cowbell/Voice/Both(Cowbell+Voice)
-<LI>Start/Stop 
-<LI>Adjust bpm(0.1 step) with the range slider (play continues),<BR />
-enter/modify number (play stops),<BR />
-or set bpm with TAP(timeout 3 sec).
-<LI>Timer(sec or bars): Similar to kitchen timer.
-Set positive number for expiration time in second and/or in bars.
-The timer pauses when the metronome is stopped.
-Set 0 to disable the timer.
-</OL>
-
-<H3>Advanced Options</H3>
-<OL>
-<LI>Swing adjust(0.0 to 3.0): 1.5(straight), 2.0(swing)<BR>
-<FONT COLOR="red">Only affects swing presets (8/8swing etc.)</FONT>
-<TT>
-<PRE>
-0-------------1--------------2 (1.5: straight)
-0----------------1-----------2 (1.8: less swing)
-0------------------1---------2 (2.0: swing)
-0--------------------1-------2 (2.2: more swing)
-0-----------------------1----2 (2.5: extreme swing)
-
-0----1-----------------------2 (0.5)
-</PRE>
-</TT>
-<LI>Increment: automatic bpm step up(down with minus values). <BR>
-Set bpm and bars (set 0 to disable)
-<LI>Mute: Set duration in bar(s) and the probability
-(Set 0 for bar(s) to disable).<BR>
-Note: Always sound is turned on after the mute bar length. <BR>
-For example, 1 bar(s) at prob. 1.0 gives alternate on/off.<BR>
-<LI>Even notes volume.
-<TT>
-<PRE>
-O: full volume 
-x: muted(0.0) or quiet(0.1))
-----------------------
-4/4 : x     O   x   O 
-6/8 : x O x O x O (Wartz style)
-8/8 : x O x O x O x O
-12/8: x x O x x O x x O x x O 
-----------------------
-Note: In this metronome 12/8 = (group of 3 1/8 notes) x 4 times in a bar
-</PRE>
-</TT>
-</OL>
-</TR>
-</TABLE>
-
 <HR>
-<H2>2. Metronome performance test</H2>
-
-<A HREF="docs/metronome/performance.html">Metronome performance test</A>
-
-<HR>
-goto at kmgoto.jp
 </BODY>
 </HTML>
