@@ -10,14 +10,9 @@
 <H3>リンク</H3>
 
 <UL>
-<LI>たぶんOK: <A HREF="demos/metronome20171215/">20171215</A>
-(マイナーバグ修正)、
-<LI>実験バージョン
-<A HREF="demos/metronome20171214/">20171214</A>(スクリーンショットのバージョン)
-(プリセットループ機能追加。「表示」ボタンで有効。
-iOSのために、ボタンのcursorをpointerに変更してみた。)
-<LI>更新: <A HREF="demos/metronome20171212/">20171212</A>
-(終了処理追加、UI: 数値入力を選択に変更)
+<LI>機能追加版: <A HREF="demos/metronome20171216/">20171216</A>
+<LI>安定版: <A HREF="demos/metronome20171212/">20171212</A>
+<LI>初期バージョン: <A HREF="demos/metronome/">20171202</A>
 <LI><A HREF="index.html">トップページ</A>(旧バージョン、テスト結果等)
 </UL>
 
@@ -36,15 +31,19 @@ Webブラウザの最優先言語で自動設定したいが、Webブラウザ�
 大丈夫そうです。200BPM超はせいぜい8分音符にしてください。<BR>
 -- 60秒のはずが61秒などは、機器の内部クロックに依存する現象なので、
 がまんしてください。
-<LI>報告された問題点
+<LI>報告された問題点(主に基本機能)
 <UL>
-<LI>iOS11.2(iPhone7)で"Start/Stop" ボタンがスタート後反応しない(20171212)<BR>
-タイマで停めてみてください。
+<LI>MicroSoft Edge(Windows 10)で調子悪い(4/4の速いのは出ても、
+8/8の音が出ない) -- 調査中
+<LI>iOS11.2(iPhone7)で"Start/Stop" 
+ボタンがスタート後反応しないのでStopできない(20171212)
+-- Webブラウザ閉じる。
+(いくつか対策してみた)
+<LI>使っているうちに音が出なくなる -- Webブラウザの*すべての*タブや
+Windowを終了(いくつか対策してみた)
 <LI>動かない -- JavaScriptは有効ですか?
 <LI>音が出ない-- イヤフォンから音が出れば正常。
 スピーカーの音量設定を確認
-<LI>使っているうちに音が出なくなる -- Webブラウザの*すべての*タブや
-Windowを終了
 </UL>
 </OL>
 
@@ -57,7 +56,7 @@ Windowを終了
 <TD BGCOLOR="#888888">
 <FONT SIZE="5" COLOR="white">下の画像をクリックしてスタート!<BR>
 上の「JP」を押して日本語メニューに</FONT><BR>
-<A HREF="demos/metronome20171215/"><IMG SRC="metronome20171214-jp.png" BORDER="1"></A>
+<A HREF="demos/metronome20171216/"><IMG SRC="metronome20171214-jp.png" BORDER="1"></A>
 <TD>
 <H3>基本操作 -- ビート、BPM を設定してStartを押す</H3>
 <OL>
