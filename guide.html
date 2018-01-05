@@ -15,126 +15,13 @@
 <BODY>
 
 
-<H2>JavaScript metronome user guide(click screen shot to start)</H2>
+<H2>KG's JS Metronome version 2 user guide</H2>
+
+<A HREF="guide-ver1.html">Version 1 User Guide</A>
 
 <H3>Links</H3>
-<UL>
-<LI>Version2: 
-<FONT SIZE=5><A HREF="demos/metronome2/20180105/">20180105</A></FONT>
-<LI>with SetList(experimental): 
-<FONT SIZE=5><A HREF="demos/metronome20171227/">20171227</A></FONT>
-<LI>with Custom preset loop: <A HREF="demos/metronome20171217/">20171217</A>
-(Press "show" button to try.)
-<LI>Basic features(stable): <A HREF="demos/metronome20171212/">20171212</A>
-<LI><A HREF="index.html">Top page</A>(older versions and performance test)
-</UL>
 
 <H3>Summary</H3>
-
-<OL>
-<LI>The progmam starts immediately after you click the link
-on the screen shot.
-<LI>Network connection is NOT required after the program and audio samples
-are cached in your Web browser. Data size is less than 1MB.
-<LI>Source code: <A HREF="https://github.com/goto920/nodejs/">
-https://github.com/goto920/nodejs/</A>.
-<LI>Reported issues
-<UL>
-<LI>Windows 10 Edge -- 8/8 does not work but 4/4 200bpm works. Strange...
---&gt; fixed(1217)
-<LI>iOS11.2(iPhone7) "Start/Stop" button does not work properly once started(20171212).<BR>
-Try to stop with the timer.
-<LI>Sound does not come out after some uses. -- Close all tab/windows of
-your Web browser.
-</UL>
-</OL>
-
-<TABLE BORDER=3>
-<TR>
-<TH>Screen shot
-<TH>Description
-</TR>
-<TR>
-<TD BGCOLOR="#888888">
-<FONT SIZE="5" COLOR="white">Click the image below to start!</FONT><BR>
-<A HREF="demos/metronome20171217/">
-<IMG SRC="metronome20171214.png" BORDER="1"></A>
-<TD>
-<H3>Basic Operation -- Select Beat, Adjust BPM, then press Start</H3>
-<OL>
-<LI>Select Beat: 4/4, 6/8, 8/8 swing etc.
-<LI>Sound selection:  Cowbell/Voice/Both(Cowbell+Voice)
-<LI>Start/Stop 
-<LI>Adjust bpm(0.1 step) with the range slider (play continues),<BR />
-enter/modify number (play stops),<BR />
-or set bpm with TAP(timeout 3 sec).
-<LI>Timer(sec or bars): Similar to kitchen timer.
-Set positive number for expiration time in second and/or in bars.
-The timer pauses when the metronome is stopped.
-Set 0 to disable the timer.
-</OL>
-
-<H3>Advanced Options</H3>
-<OL>
-<LI>Swing adjust(0.0 to 3.0): 1.5(straight), 2.0(swing)<BR>
-<FONT COLOR="red">Only affects swing presets (8/8swing etc.)</FONT>
-<TT>
-<PRE>
-0-------------1--------------2 (1.5: straight)
-0----------------1-----------2 (1.8: less swing)
-0------------------1---------2 (2.0: swing)
-0--------------------1-------2 (2.2: more swing)
-0-----------------------1----2 (2.5: extreme swing)
-
-0----1-----------------------2 (0.5)
-</PRE>
-</TT>
-<LI>Increment: automatic bpm step up(down with minus values). <BR>
-Set bpm and bars (set 0 to disable)
-<LI>Mute: Set duration in bar(s) and the probability
-(Set 0 for bar(s) to disable).<BR>
-Note: Always sound is turned on after the mute bar length. <BR>
-For example, 1 bar(s) at prob. 1.0 gives alternate on/off.<BR>
-<LI>Even notes volume.
-<TT>
-<PRE>
-O: full volume 
-x: muted(0.0) or quiet(0.1))
-----------------------
-4/4 : x     O   x   O 
-6/8 : x O x O x O (Wartz style)
-8/8 : x O x O x O x O
-12/8: x x O x x O x x O x x O 
-----------------------
-Note: In this metronome 12/8 = (group of 3 1/8 notes) x 4 times in a bar
-</PRE>
-</TT>
-</OL>
-</TR>
-</TABLE>
-
-<H3>Loop of preset beats(20171214)</H3>
-
-<TABLE BORDER=3>
-<TR>
-<TH>Screen Shot<TH>Description
-<TR>
-<TD><IMG SRC="metronome20171214-loop.png">
-<TD>
-<UL>
-<LI>Custom Loop button: Select hide/show
-<LI>Table editor
-<UL>
-<LI>Select preset beat and # of bar repeat. 
-Change "swing" value only if you want to change the default value.
-<LI>a(dd) radio button: Add the last row at the end of the table. 
-(currently insert is NOT supported)
-<LI>d(el) radio button: Press to delete the row
-</UL>
-<LI>Start/Stop button: Fill the table first then Start
-<LI>rewind button: Back to the top. Loop play stops when pressed.
-</UL>
-</TABLE>
 
 <HR>
 goto at kmgoto.jp
