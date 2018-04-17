@@ -5,13 +5,14 @@
 </HEAD>
 <BODY>
 
-<title>KG's React JavaScript App Demos</title>
+<title>KG's App Demos</title>
 
-<H1>KG's JavaScript App Demos</H1>
+<H1>KG's App Demos</H1>
+
+<H2>1. React Javascript Applications (Web browsers on PC and smartphones)</H2>
 
 Developed on Unbuntu with NodeJS and React.
-
-<H2>1. Demos</H2>
+Javascript execution must be enabled.
 
 <OL>
 <LI>Metronome (2MB):
@@ -26,13 +27,54 @@ Windows 10, macOS, Linux, Android, iOS without installing anything.
 They should work without network connection until cache expires
 once the program and audio samples have been cached in your Web browser.
 
-<HR>
-<H2>2. Source code (JavaScript and sound files)</H2>
-
 <P>
+Source code (JavaScript and sound files)
 <A HREF="https://github.com/goto920/nodejs/">
 https://github.com/goto920/nodejs/</A>
 </P>
+<HR>
+<H2>2. Music related Java program (Windows, macOS, Linux)</H2>
+
+<P>
+The following applications require Java Runtime Environment on you PC.
+They do not run on smartphones unless Java RE is installed (I have never
+heard). Download them and run on you PC. 
+</P>
+
+Source code and details: 
+<A HREF="https://github.com/goto920/java">https://github.com/goto920/java</A>
+
+<OL>
+<LI><A HREF="https://github.com/goto920/java/blob/master/bin/ConvertToWave16App.jar">ConvertToWave16App.jar</A>Extract wav audio file from
+various video format file
+<LI><A HREF="https://github.com/goto920/java/blob/master/bin/TimePitchPlayerApp.jar">TimePitchPlayerApp.jar</A>
+Time Pitch variable audio player (wav)
+<LI><A HREF="https://github.com/goto920/java/blob/master/bin/FilteredPlayerApp.jar">FilteredPlayerApp.jar</A>
+Making karaoke, drum sound surpressed audio track (wav)
+using percussive/harmonic separation, pan(left to right),freq range
+<LI><A HREF="https://github.com/goto920/java/blob/master/bin/FeedbackBoosterApp2.jar">FeedbackBoosterApp2.jar</A> 
+Feedback booster for electric guitar (work in progress).
+Equipments
+<TT>
+<HR>
+<PRE>
+(Guitar Amp) <--------------------------------+
+microphone                                    |
+    |                                         |
+    V                                         |
+Audio I/O interface ---> small amp --> exciter (guitar)
+    ^
+    |
+    V
+  PC (Win, macOS, or Linux with Java RE)
+
+Note: You may omit guitar amp and microphone
+if effector aux output is fed into Audio I/O interface.
+</PRE>
+<HR>
+</TT>
+</OL>
+
 <HR>
 Contact: goto at kmgoto.jp
 </BODY>
