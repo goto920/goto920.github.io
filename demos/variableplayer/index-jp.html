@@ -12,12 +12,55 @@ Only UI for soundtouchjs module was written with React.
 <h2>URL</h2>
 
 <UL>
+<LI><A HREF="./20200325/">20200325</A> (Save, 実験中)
 <LI><A HREF="./20200324/">20200324</A> (AB repeat)
 <LI><A HREF="./20200317/">20201317</A> (update)
 <LI><A HREF="./20200211/">20200211</A> (modules update)
 <LI><A HREF="./20190226/">20190226</A>
 </UL>
 
+<HR>
+<H2>使い方(20200325版)</H2>
+
+動作環境(確認作業中): 
+Windows PCのWebブラウザ(Edge)、
+Apple PCのWebブラウザ(Safari)、
+AndroidのWebブラウザ (mobile Chrome)、
+iOS (iPhoneなど) のWebブラウザ (mobile Safari)
+
+<OL>
+<LI>ローカルファイル (wav, mp3など)を読み込む 
+(Webブラウザが読める場所にあること)
+<UL>
+<LI>PC: ディスク、クラウドストレージなど
+<LI>Android: ディスク、クラウドストレージなど
+<LI>iPhone: Safariで読めるところはかなり限定されます。iCloudに置くのが簡単。
+</UL>
+<LI>通常再生: PlayFromA (Aは0になっている)
+<LI>再生速度変更: テンポスライダで調整 (再生中に変更可)
+<LI>ピッチ(音程変更)
+<UL>
+<LI>上のスライダは半音単位 (semitone)
+<LI>下のスライダは半音の1/100単位 (cents) -- 微調整
+</UL>
+<LI>音量調整: Volumeスライダ
+<LI>ABリピート再生
+<OL>
+<LI>再生中にsetA, setBを押す (簡単)
+<LI>時間のスライダを動かしsetAとsetBを決めてもよい
+<LI>ABLoopを押す
+</OL>
+<LI>保存: Saveボタンを押す
+<OL>
+<LI>曲の再生が終わるまで待つ (すぐにしたいのですが未解決)
+<LI>音量を変えても、保存には影響なし (保存は100%音量)
+<LI>設定した再生速度と音程は再生中に変更しないこと (保存に影響する)
+<LI>曲の再生が終ったらダウンロードできる (現在wavファイルのみ)
+<LI>ダウンロードしたファイルを再生、保存する操作は機器により違うので注意
+</OL>
+</OL>
+
+<HR>
 <P>
 Source code (JavaScript and sound files)
 <A HREF="https://github.com/goto920/nodejs/">
