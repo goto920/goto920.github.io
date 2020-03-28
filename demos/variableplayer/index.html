@@ -7,13 +7,50 @@
 
 <h1>KG's variable pitch/speed player</h1>
 
-<A HREF="index-jp.html">日本語</A><BR>
 Only UI for soundtouchjs module was written with React.
-The App does not work on iOS (iPhone) yet.
+
+<A HREF="./20200328/">
+<img src="screenshot.png" width="360" border="5"></A>
+
+<HR>
+<H2>Tested on (as of Mar.28, 2020)</H2>
 
 <UL>
-<LI><A HREF="./20200328/">20200328</A> (AB repeat, Export(Save)) does not work on iOS yet
-<LI><A HREF="./20200317/">20200317</A> (Basic features)
+<LI>Linux Firefox
+<LI>Windows 10(latest) Edge
+<LI>macOS(latest) Safari
+<LI>Android Phone (3 yo)
+<LI>iPhone 6 (latest iOS)
+</UL>
+
+The program is written in JavaScript and computation is on your web browser.
+It should work offline.
+
+<HR>
+<H2>Brief How To</H2>
+
+Prepare audio file (wav, mp3, and other formats depends on the device). 
+The folders, which iPhone mobile Safari can access, are quite limited.
+iCloud Drive might be a good choice. 
+
+<UL>
+<LI>1) Load an audio file in the top input box.
+<LI>2) "PlayFromA" to play once (A is default 0), "Pause" to pause
+<LI> "LoopAB" to play AB loop, "StopLoop" to stop loop
+<LI>Speed Control: move the slider (25% to 200%)
+<LI>Pitch Control: move the semi-tone slider and fine pitch adjust ment
+by moving "cents" slider (100 cents = 1 semi-tone)
+<LI>Volume Control: move the volume slider
+<LI>3) "ExportWav" to export wave file at the selected speed and pitch
+<LI>Notes
+<UL>
+<LI>ExportWav needs playback time with the current processing
+(slow playback needs more time)
+<LI>Volume Control does not affect the volume of exported wav file.
+<LI>Do not move Speed and Pitch Sliders while exporting
+<LI>iPhone requires special operation to store the exported data.
+Blob window pops up and it is possible to save the data in iCloud Drive.
+However, the filename will not be set automatically. You might want to change the filename after.
 </UL>
 
 <P>
