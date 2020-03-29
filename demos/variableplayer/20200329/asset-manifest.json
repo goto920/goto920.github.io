@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/demos/variableplayer/20200329/static/css/main.c1c4a962.chunk.css",
+    "main.js": "/demos/variableplayer/20200329/static/js/main.ab869985.chunk.js",
+    "main.js.map": "/demos/variableplayer/20200329/static/js/main.ab869985.chunk.js.map",
+    "runtime-main.js": "/demos/variableplayer/20200329/static/js/runtime-main.f5b64bbb.js",
+    "runtime-main.js.map": "/demos/variableplayer/20200329/static/js/runtime-main.f5b64bbb.js.map",
+    "static/js/2.2197dcf5.chunk.js": "/demos/variableplayer/20200329/static/js/2.2197dcf5.chunk.js",
+    "static/js/2.2197dcf5.chunk.js.map": "/demos/variableplayer/20200329/static/js/2.2197dcf5.chunk.js.map",
+    "index.html": "/demos/variableplayer/20200329/index.html",
+    "precache-manifest.aa09184254c410a49670d6fe68c7d248.js": "/demos/variableplayer/20200329/precache-manifest.aa09184254c410a49670d6fe68c7d248.js",
+    "service-worker.js": "/demos/variableplayer/20200329/service-worker.js",
+    "static/css/main.c1c4a962.chunk.css.map": "/demos/variableplayer/20200329/static/css/main.c1c4a962.chunk.css.map",
+    "static/js/2.2197dcf5.chunk.js.LICENSE.txt": "/demos/variableplayer/20200329/static/js/2.2197dcf5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5b64bbb.js",
+    "static/js/2.2197dcf5.chunk.js",
+    "static/css/main.c1c4a962.chunk.css",
+    "static/js/main.ab869985.chunk.js"
+  ]
+}
