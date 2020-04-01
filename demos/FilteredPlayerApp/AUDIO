@@ -1,0 +1,36 @@
+<audio controls> 
+ <source src="SadWoman-60sec.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-karaokeMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-karaokeCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-harmonicAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-percussiveAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-percussiveAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-drumCoverMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<audio controls> 
+ <source src="SadWoman-60sec-drumCoverCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+Prepare audio file (wav, mp3, and other formats depends on the device)
+<H3>(FYI) Sample audio files (copyright free)</H3>
+<LI>1) Load an audio file in the top input box. 
+<LI>"iOSAudioReset": click if audio system gets insane on iOS devices

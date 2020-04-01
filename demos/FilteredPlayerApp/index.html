@@ -1,0 +1,364 @@
+<HTML>
+<HEAD>
+<title>KG's Filtered Player (Java App)</title>
+<META charset="utf-8">
+</HEAD>
+<BODY>
+
+<H1>KG's Filtered Player (Java App)</H1>
+
+<A HREF="index-jp.html">日本語</A>
+<P>
+File size: 600kB<BR />
+OS: Linux/Windows/macOS (smartphones are not supported)<br />
+prerequisite/dependency: Java Runtime Environment (Java Virtual Machine)
+Input Audio: wav, mp3 stereo (monoral is NOT supported)
+</P>
+
+I am thinking of implementing in JavaScript since Java Runtime Environment
+is not installed by in recent Windows nor macOS.
+
+<HR>
+<H2>0. Screen shots and What this app can do</H2>
+
+Click to view in full size.
+
+<H3>Summary of audio samples</H3>
+
+The sample music of my original song, 
+Sad Woman/Yoimachigusa 1980, is used to avoid copyright issues.
+I was the lead vocalist playing left guitar in the recording.
+
+<TABLE border="3">
+<TR>
+<TH>Process<TH>Result<TH>Comment
+<TR>
+<TD>Original(no filter)
+<TD><audio controls> 
+ <source src="SadWoman-60sec.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>Recorded with 16-track 1 inch analog tape recorder 
+<TR>
+<TD>male karaoke preset
+<TD>
+<audio controls> 
+ <source src="SadWoman-60sec-karaokeMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>decent
+<TR>
+<TD>karaoke custom
+<TD><audio controls> 
+ <source src="SadWoman-60sec-karaokeCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>a little better
+<TR>
+<TD>harmonic only
+<TD>
+<audio controls> 
+ <source src="SadWoman-60sec-harmonicAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>very dull (useless)
+<TR>
+<TD>percussive only
+<TD><audio controls> 
+ <source src="SadWoman-60sec-percussiveAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>for drum transcription?
+<TR>
+<TD>drum cover preset
+<TD><audio controls> 
+ <source src="SadWoman-60sec-drumCoverMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>bass guitar and vocal is weak?
+<TR>
+<TD>drum cover custom
+<TD><audio controls> 
+ <source src="SadWoman-60sec-drumCoverCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<TD>best I can do
+</TABLE>
+
+<H2>1) Input File Selection</H2>
+
+wav and mp3 files are supported.
+
+<HR>
+<A HREF="filteredPlayer0.png">
+<img src="filteredPlayer0.png" width="640">
+</A><BR />
+<B>Fig. 0 Main Window(smaller) and Filter Setting window</B>
+<HR>
+<A HREF="filteredPlayer-fileSelection.png">
+<img src="filteredPlayer-fileSelection.png" width="800"></A><BR />
+<B>Fig. 1 Input File Selection</B>
+<HR>
+
+<H2>2) Separation by pan and frequency</H2>
+
+<UL>
+<LI>horizontal axis: pan range (-1: Left, 0: Center, 1: Right)
+<LI>Vertical asis: frequency range (Hz)
+<LI>Selection of T(hrough), M(ute), P(ercussive), H(armonic) 
+for each box duaring playback<br /> 
+-- Note: Split(to 2 files) is not implemented)
+<LI>press Play in Main Window to play
+</UL>
+
+<H3>No filter</H3>
+<HR>
+<A HREF="filteredPlayer-throughAllMode.png">
+<img src="filteredPlayer-throughAllMode.png" width="640"></A><BR />
+<B>Fig. 2 Through All Mode (no filter)</B>
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec.mp3">download</A>
+
+<H3>Muting male lead vocal by pan(center) and frequency range</H3>
+
+<HR>
+<A HREF="filteredPlayer-karaokeMode.png">
+<img src="filteredPlayer-karaokeMode.png" width="640"></A><BR />
+<B>Fig. 3 Karaoke Male Preset ("M" denotes Mute)</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-karaokeMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-karaokeMode.mp3">download</A>
+<HR>
+
+<H3>Expanding mute frequency range</H3>
+
+<HR>
+<A HREF="filteredPlayer-karaokeCustom.png">
+<img src="filteredPlayer-karaokeCustom.png" width="640"></A><BR />
+<B>Fig. 4 Karaoke Male Customized (Mute range expanded)</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-karaokeCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-karaokeCustom.mp3">download</A>
+<HR>
+
+<H2>3) Separation by percussive/harmonic, pan,and frequency</H2>
+
+<H3>Harmonic only</H2>
+
+No attacks (dull)
+
+<HR>
+<A HREF="filteredPlayer-harmonicAll.png">
+<img src="filteredPlayer-harmonicAll.png" width="640"></A><BR />
+<B>Fig.5 harmonicALL ("H" denotes Harmonic)</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-harmonicAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-harmonicAll.mp3">download</A>
+<HR>
+
+<H3>Percussive only</H2>
+
+<HR>
+<A HREF="filteredPlayer-percussiveAll.png">
+<img src="filteredPlayer-percussiveAll.png" width="640"></A><BR />
+<B>Fig. 6 PercussiveALL ("P" denotes Percussive)</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-percussiveAll.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-percussiveAll.mp3">download</A>
+<HR>
+<H3>drumCover Preset</H3>
+
+Harmonic + center vocal(Through) + L/R guitars(Through)
+
+<HR>
+<A HREF="filteredPlayer-drumCoverMode.png">
+<img src="filteredPlayer-drumCoverMode.png" width="640"></A><BR />
+<B>Fig. 7 DrumCover Preset ("H" denotes Harmonical)</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-drumCoverMode.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-drumCoverMode.mp3">download</A>
+<HR>
+
+<H3>drumCover Customization and saving/loading a custom filter</H3>
+
+<HR>
+<A HREF="filteredPlayer-drumCoverCustom.png">
+<img src="filteredPlayer-drumCoverCustom.png" width="640"></A><BR />
+<B>Fig. 8 DrumCover Customized</B> 
+<br />
+Audio sample
+<audio controls> 
+ <source src="SadWoman-60sec-drumCoverCustom.mp3" type="audio/mpeg">
+ Your browser does not support the audio tag.
+</audio> 
+<A href="SadWoman-60sec-drumCoverCustom.mp3">download</A>
+<HR>
+<A HREF="filteredPlayer-saveFilter.png">
+<img src="filteredPlayer-saveFilter.png" width="640"></A><BR />
+<B>Fig. 9 Saving a custom filter</B> 
+<HR>
+
+<H2>1. Installation</H2>
+
+<OL>
+<LI>Linux: Most Linux distribution includes Java Runtime (try command: java)
+-- Nothing to do
+<LI>Recent Windows/macOS: does not include Java Runtime
+<OL>
+<LI>Download Java Runtime Environment for your Windows or macOS 
+<A HREF="https://www.java.com/">https://www.java.com/</A>
+or opensource version 
+<A HREF="https://jdk.java.net/jmc/">https://jdk.java.net/jmc/</A>
+https://www.java.com/ES/download/</A> (personal/development use at no cost)
+</OL>
+<LI>Download and save this App on Desktop or whereever you like
+<A HREF="https://github.com/goto920/java/blob/master/bin/FilteredPlayerApp.jar">
+jar executable archive file</A>(600kB, runs on Windows/macOS/Linux)
+</OL>
+
+<HR>
+
+Devices tested 
+
+<UL>
+<LI>(Stable) Linux -- Firefox, Chrome
+<LI>(Stable) Windows 10 -- Edge
+<LI>(Stable) macOS -- Safari
+<LI>(Stable) Android Phone -- mobile Chrome
+<LI>(sometimes unstable) iPhone 6/iPodTouch mobile Safari
+</UL>
+
+The program is written in JavaScript and computation is on your web browser.
+It should work offline.
+
+<HR>
+<H2>1. Features</H2>
+
+<OL>
+<LI>Same program (just 700kB) works on various devices.
+<LI>No installation required. Runs offline.
+<LI>Slow down playback for drummer, guitarist, pianist, vocalist
+<LI>Fine pitch adjustment for vocalist, guitarist, pianist
+<LI>Modified sound on pitch/speed can be downloaded as wav file
+(No network connection required since downloading is local)
+</OL>
+
+<HR>
+<H2>2. Brief How To</H2>
+
+Prepare audio file (wav, mp3, and other formats depends on the device)
+on local disk or cloud storage.
+For iOS(iPhone) devices, iCloud Drive is easy to access.
+For Android devices, Google Drive is easy to access. 
+
+<H3>(FYI) Sample audio files (copyright free)</H3>
+
+<UL>
+<LI><A HREF="Blues_Practice-solo-complete.mp3">MuseScore Output (blues)</A>
+(201 sec)
+<LI><A HREF="sample30sec.mp3">The beginning of above</A>(30 sec)
+<LI><A HREF="Tamaranaize.mp3">My original song in a band(1981)</A>
+(240 sec, lyrics in Japanese)
+</UL>
+
+Download them and save in local disk or cloud storage.
+Then open one of them in this program.
+
+<H3>Buttons and slider controls</H3>
+
+<UL>
+<LI>1) Load an audio file in the top input box. 
+Then "selectFile!" becomes "PlayOnce".
+<LI>2A) Normal Playback
+<UL>
+<LI>"PlayOnce" to play once
+<LI>"Pause" to pause, 
+<LI>"Rewind" to set the time to the beginning.
+</UL>
+<LI>2B) Loop Playback
+<UL>
+<LI>"LoopAB" to play AB loop
+<LI>"StopLoop" to stop loop
+<LI>interval: interval between successive playback (default 2 sec)
+</UL>
+<LI>A, B Setting -- 
+Set A and B with Time slider and "setA", "setB" button<br />
+or press "setA" and "setB" during playback.
+<LI>Sliders
+<UL>
+<LI>Speed Control: move the slider (25% to 200%)
+<LI>Pitch Control: move the semi-tone slider and fine pitch adjust ment
+by moving "cents" slider (100 cents = 1 semi-tone)
+<LI>Volume Control: move the slider (default 80) 
+does not affect the volume of exported wav file.
+</UL>
+
+<LI>3) Export
+<UL>
+<LI>"ExportAfterPlayback": export wave file at the selected speed and pitch
+<LI>"abortExport": abort export
+<LI>"iOSAudioReset": click if audio system gets insane on iOS devices
+<LI>Notes on export
+<UL>
+<LI>ExportWav needs playback time with the current playback speed
+<LI>Do not move Speed and Pitch Sliders while exporting unless if you really want to
+<LI>Volume value does not affect the exported sound
+<LI>Filename will be set as "originalname&amp;s90&amp;p-188.wav" 
+(speed 80, pitch -1.88)
+<LI><font color="red">
+iOS requires special operation to store the exported data
+</font>
+</UL>
+</UL>
+</UL>
+
+<HR>
+<H2>2. Comments</H2>
+
+<P>
+iPhone requires special operation to store the exported data.
+Blob window pops up and it is possible to save the data in iCloud Drive.
+You  want to rename the file with extension".wav",
+because the filename will not be set automatically. 
+</P>
+<P>
+I know it is stupid to wait for playback time for export.
+I am trying to find a way to use soundtouchjs module 
+with OfflineAudioContext.
+</P>
+<HR>
+
+<P>
+Source code (JavaScript and sound files)
+<A HREF="https://github.com/goto920/nodejs/">
+https://github.com/goto920/nodejs/</A>
+</P>
+<HR>
+Contact: goto at kmgoto.jp
+</BODY>
+</HTML>
