@@ -41,29 +41,41 @@ Linux (Firefox, Chrome), Android (mobile Chrome), iOS (mobile Safari)
 https://github.com/goto920/nodejs/</A> のmetronome
 </P>
 <HR>
-<H2>2. Music related Java program (Windows, macOS, Linux)</H2>
+<H2>2. 音楽関係のJava program (Windows, macOS, Linux)</H2>
+
+こちらは、スマートフォンでは動きません
 
 <P>
-The following applications require Java Runtime Environment on your PC.
-They do not run on smartphones unless Java RE is installed (I have never
-heard). Download and run them on your PC. 
+以下のプログラムを動かすためにはPCにJava実行環境が必要です。
+近年のPC (Windows/macOS) にはインストールされていないので、
+<A HREF="https://www.java.com/">https://www.java.com/</A>
+などから自分でインストールする必要があります。
+現在のところスマートフォンにJava実行環境を入れることができないので
+スマートフォンでは動きません。(Androidの実行環境はJavaの拡張ですが、
+普通のJavaプログラムは動きません)
 </P>
 
-Source code and details: 
+ソースコードと詳細:
 <A HREF="https://github.com/goto920/java">https://github.com/goto920/java</A>
 
 <OL>
 <LI><A HREF="https://github.com/goto920/java/blob/master/bin/ConvertToWave16App.jar">ConvertToWave16App.jar</A> 
-Extract wav audio file from various video format file
+色々な形式のビデオファイルから音声をwav形式で取り出す
 <LI><A HREF="https://github.com/goto920/java/blob/master/bin/TimePitchPlayerApp.jar">TimePitchPlayerApp.jar</A>
-Time Pitch variable audio player (wav)
+音程と速度を変更できるプレーヤ (wav, mp3) -- JavaScript版の方が高機能
+
 <LI><A HREF="https://github.com/goto920/java/blob/master/bin/FilteredPlayerApp.jar">FilteredPlayerApp.jar</A>
-Making karaoke, drum sound surpressed audio track (wav)
-using percussive/harmonic separation, pan(left to right), and freq range.
-<A HREF="demos/FilteredPlayerApp/">Documents</A>
+ステレオ音楽ファイル (wav, mp3) を読み込んで、ボーカルやドラムの音を
+小さく変換して、再生、保存(wav)する。
+原理は打音と連続音の分離、左右位置(pan)、周波数帯による振り分け
+<A HREF="demos/FilteredPlayerApp/">Documents</A>、
+<A HREF="demos/FilteredPlayerApp/index-jp.html">日本語説明(準備中)</A>
+
 <LI><A HREF="https://github.com/goto920/java/blob/master/bin/FeedbackBoosterApp2.jar">FeedbackBoosterApp2.jar</A> 
-Feedback booster for electric guitar (work in progress).
-Equipments
+エレキギターのフィードバックブースター
+<OL>
+
+フィードバックブースターの機器接続形態
 <TT>
 <HR>
 <PRE>
@@ -80,15 +92,14 @@ Audio I/O interface ---> small amp --> exciter (guitar)
 </PRE>
 <HR>
 </TT>
-Note: You may omit guitar amp and microphone
-if effector aux output is fed into Audio I/O interface.
+イフェクタまたはアンプにライン出力がある場合はマイクは不要。
 </OL>
 <HR>
-<H2>Documents(talk etc.)</H2>
+<H2>トークなどの資料</H2>
 
 <UL>
 <LI>OSS Nagoya 2018 <A HREF="TIC/IoTSecurity-OSS-Nagoya.pdf">Slides</A>(In Japanese)
-<LI>Internet Anzen Kyoushitsu 20181125 
+<LI>インターネット安全教室 (20181125) 
 <A HREF="TIC/TIC-Anzen20181125.pdf">Slides</A>(In Japanese)
 </UL>
 <HR>
