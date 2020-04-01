@@ -12,56 +12,117 @@ Thanks to soundtouchjs module (https://github.com/cutterbl/SoundTouchJS).
 <A HREF="index-jp.html">日本語</A>
 
 <HR>
-(Fixing mulfunction on iOS (iPhone))
-<A HREF="20200401">20200401</A>(Test)
+<A HREF="20200401/">
+<img src="player-eng.png" width = "320" border = "3">
+</A>
 <HR>
 
-<H2>Devices tested </H2>
+<H2>0. Devices tested </H2>
 
 <UL>
-<LI>Linux(Ubuntu 18LTS) Firefox
-<LI>Windows 10(latest) Edge
-<LI>macOS(latest) Safari
-<LI>Android Phone (3 yo, Android 7.0)
-<LI>iPhone 6 (latest iOS), iPodTouch (iOS 12.4.6)
+<LI>Linux -- Firefox, Chrome
+<LI>Windows 10 -- Edge
+<LI>macOS -- Safari
+<LI>Android Phone -- mobile Chrome
+<LI>iPhone 6/iPodTouch mobile Safari
 </UL>
 
 The program is written in JavaScript and computation is on your web browser.
 It should work offline.
 
 <HR>
-<H2>Brief How To</H2>
+<H2>1. Features</H2>
 
-Prepare audio file (wav, mp3, and other formats depends on the device). 
-The folders, which iPhone mobile Safari can access, are quite limited.
-iCloud Drive might be a good choice. 
+<OL>
+<LI>Same program (just 700kB) works on various devices.
+<LI>No installation required. Runs offline.
+<LI>Slow down playback for drummer, guitarist, pianist, vocalist
+<LI>Fine pitch adjustment for vocalist, guitarist, pianist
+<LI>Modified sound on pitch/speed can be downloaded as wav file
+(No network connection required since downloading is local)
+</OL>
+
+<HR>
+<H2>2. Brief How To</H2>
+
+Prepare audio file (wav, mp3, and other formats depends on the device)
+on local disk or cloud storage.
+For iOS(iPhone) devices, iCloud Drive is easy to access.
+For Android devices, Google Drive is easy to access. 
+
+<H3>(FYI) Sample audio files (copyright free)</H3>
 
 <UL>
-<LI>1) Load an audio file in the top input box.
-<LI>2) "PlayFromA" to play once (A is default 0), "Pause" to pause
-<LI> "LoopAB" to play AB loop, "StopLoop" to stop loop
+<LI><A HREF="Blues_Practice-solo-complete.mp3">MuseScore Output (blues)</A>
+(201 sec)
+<LI><A HREF="sample30sec.mp3">The beginning of above</A>(30 sec)
+<LI><A HREF="Tamaranaize.mp3">My original song in a band(1981)</A>
+(240 sec, lyrics in Japanese)
+</UL>
+
+<H3>Buttons and slider controls</H3>
+
+<UL>
+<LI>1) Load an audio file in the top input box. 
+Then "selectFile!" becomes "PlayOnce".
+<LI>2A) Normal Playback
+<UL>
+<LI>"PlayOnce" to play once
+<LI>"Pause" to pause, 
+<LI>"Rewind" to set the time to the beginning.
+</UL>
+<LI>2B) Loop Playback
+<UL>
+<LI>"LoopAB" to play AB loop
+<LI>"StopLoop" to stop loop
+<LI>interval: interval between successive playback (default 2 sec)
+</UL>
+<LI>A, B Setting -- 
+Set A and B with Time slider and "setA", "setB" button<br />
+or press "setA" and "setB" during playback.
+<LI>Sliders
+<UL>
 <LI>Speed Control: move the slider (25% to 200%)
 <LI>Pitch Control: move the semi-tone slider and fine pitch adjust ment
 by moving "cents" slider (100 cents = 1 semi-tone)
-LI>(**Only if necessarary**) 3) "ExportWav" to export wave file at the selected speed and pitch
-<LI>Notes on ExportWav
+<LI>Volume Control: move the slider (default 80) 
+does not affect the volume of exported wav file.
+</UL>
+
+<LI>3) Export
 <UL>
-<LI>ExportWav needs playback time with the current processing
-(slow playback needs more time)
-<LI>Volume Control does not affect the volume of exported wav file.
-<LI>Do not move Speed and Pitch Sliders while exporting
-<LI>Filename will be set like "original&amp;s90&amp;p-1.wav" with
-speed and pitch value.
+<LI>"ExportAfterPlayback": export wave file at the selected speed and pitch
+<LI>"abortExport": abort export
+<LI>"iOSAudioReset": click if audio system gets insane on iOS devices
+<LI>Notes on export
+<UL>
+<LI>ExportWav needs playback time with the current playback speed
+<LI>Do not move Speed and Pitch Sliders while exporting unless if you really want to
+<LI>Volume value does not affect the exported sound
+<LI>Filename will be set as "originalname&amp;s90&amp;p-188.wav" 
+(speed 80, pitch -1.88)
+<LI><font color="red">
+iOS requires special operation to store the exported data
+</font>
+</UL>
 </UL>
 </UL>
 
+<HR>
+<H2>2. Comments</H2>
+
+<P>
 iPhone requires special operation to store the exported data.
 Blob window pops up and it is possible to save the data in iCloud Drive.
 You  want to rename the file with extension".wav",
 because the filename will not be set automatically. 
-
+</P>
+<P>
 I know it is stupid to wait for playback time for export.
-I am trying to find a way to use soundtouchjs with OfflineAudioContext.
+I am trying to find a way to use soundtouchjs module 
+with OfflineAudioContext.
+</P>
+<HR>
 
 <P>
 Source code (JavaScript and sound files)
