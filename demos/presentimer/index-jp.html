@@ -6,46 +6,40 @@
 <BODY>
 <H1>KG's Presentation Timer</H1>
 
+<!--
 <UL>
 <LI><A HREF="demos/presentimer/20200211/">modules update</A>(20200211)<BR>
 <LI><A HREF="demos/presentimer/20180515/">test</A>(20180515)<BR>
 <LI><A HREF="demos/presentimer/20180416/">beta</A>(20180416)<BR>
 </UL>
+-->
 
 <HR>
 <P>
 Click the image below to start.<BR>
-<A HREF="demos/presentimer/20200211/">
-<img src="demos/presentimer/presentimer.png" border="5"></A>
+<A HREF="20200211/">
+<img src="presentimer.png" border="5"></A>
 </P>
 
 
 <HR>
-<h2>How to use(使い方)</h2>
+<h2>使い方</h2>
 
-If your talk is long, disable screen saver (or lock).<br/>
 話す時間が長いときは、スクリーンセーバー(ロック)を無効にしてください。
 
 <OL>
-<LI>Set parameters <br/> 
-default: Talk 5min(warning at 4 min) + Q and A 3min, voice alarm
+<LI>パラメータ設定<br /> 
+ディフォルト: トーク(5分、1分前にアラーム) + 質疑応答 (3分)、音声アラーム
 <OL>
-<LI>Set "Presentation talk" in minutes (default 5 min)<br/>
-発表時間(話す時間)を設定する(default 5分)
-<LI>Set "Warning NN minutes more" (default 1 min). Select "none" to
-disable Warning.
-Warning is disabled if NN is longer or equal to "Presentation talk".
-<br/>
-トーク終了の何分前に警告を出すか設定する (default 1分)。
-警告を出したくないときは "none"を選ぶ。
+<LI>Presentation talk(min): 発表時間(話す時間) (default 5分)
+<LI>Warning: トーク終了の何分前に警告を出すか (default 1分)<br />
+-- 警告を出したくないときは "none"を選ぶ。
 発表時間を超える値を選ぶと "none"になる。
-<LI>Set "Q and A" time in minutes (default 3 min)<br/>
-Q and Aを質疑応答時間(分)に設定する(default 3分)
+<LI>Q and A (min): 質疑応答時間(分)を設定する(default 3分)
 <HR>
-Total session time(セッションの合計時間) 
-= "Presentation Talk" + "Q and A" <br/>
+セッションの合計時間 = "Presentation Talk" + "Q and A"
 <HR>
-<LI>Choose sound alarm (音声アラームを選ぶ):
+<LI>Choose sound alarm (音声アラームの種類を選ぶ):
 <UL>
 <LI>Bell (Cowbell_high, Cowbell_mid, RideCup, church, hotel)
 <LI>Voice
@@ -56,34 +50,23 @@ Total session time(セッションの合計時間)
 <UL>
 <LI>"Start" (開始) -- (Start/Pause/Cont. button)
 <OL>
-<LI>Decremental time is shown in blue up to "Presentation time" - 1min<br/>
-発表時間の1分前まで青で減算表示
-<LI>One bell sound or voice alarm (NN more minute) will be heard
-and decremental time is shown in orange for one minutes<br/>
-発表終了1分前にサウンドアラームが鳴り、オレンジで減算表示
-<LI>Two bell sounds or voice alarm(end of the talk) will be heard 
-and incremental time is shown in green<br/>
-発表終了のサウンドアラーム(ベル2回または音声)が鳴り、緑で加算表示
-<LI>Three bell sounds or voice alarm(end of session, thank you) will
-be heard and incremental time is shown in red<br/>
-セッション終了のサウンドアラーム(ベル2回、または音声)が鳴り、
+<LI>発表時間の1分前まで青で減算表示
+<LI>発表終了1分前にサウンドアラームが鳴り、オレンジで減算表示
+<LI>発表終了のサウンドアラーム(ベル2回または音声)が鳴り、緑で加算表示
+<LI>セッション終了のサウンドアラーム(ベル2回、または音声)が鳴り、
 赤表示に変わる
 </OL>
-<LI>"Pause"(一時停止) to pause the timer.
-"Cont." (続き) to continue.
-<LI>"Reset"(リセット) to reset the timer. 
-"Presentation Talk", "Warning NN minutes2, 
-and "Q and A" minutes are kept for subsequent use 
-until the application is reloaded.<br/>
-再起動するまでは、続けて同じ設定で使えるように、
+<LI>"Pause": 一時停止
+<LI>"Cont." (続き)
+<LI>"Reset"(リセット) <br /> 
+-- 再起動するまでは、続けて同じ設定で使えるように、
 発表、警告と質疑応答時間の設定は変わらない。
 </UL>
 </OL>
 
-The app should work offline once the program and data have been 
-cached. Cache expiration period depends on devices.<br/>
-このアプリケーションはプログラムとデータがキャッシュされたあとは、
+このアプリケーションは一度使ってプログラムとデータがキャッシュされたあとは、
 オフラインで使用できる。キャッシュが時間切れになる期間は装置に依存する。 
+スマートフォンの場合は「ホーム画面」に追加すると便利です。
 <HR>
 goto at kmgoto.jp
 </BODY>
