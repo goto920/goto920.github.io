@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/demos/presentimer/20200211/static/css/main.b22885c3.chunk.css",
+    "main.js": "/demos/presentimer/20200211/static/js/main.85a9f582.chunk.js",
+    "main.js.map": "/demos/presentimer/20200211/static/js/main.85a9f582.chunk.js.map",
+    "runtime-main.js": "/demos/presentimer/20200211/static/js/runtime-main.a3fbe036.js",
+    "runtime-main.js.map": "/demos/presentimer/20200211/static/js/runtime-main.a3fbe036.js.map",
+    "static/js/2.414286d3.chunk.js": "/demos/presentimer/20200211/static/js/2.414286d3.chunk.js",
+    "static/js/2.414286d3.chunk.js.map": "/demos/presentimer/20200211/static/js/2.414286d3.chunk.js.map",
+    "index.html": "/demos/presentimer/20200211/index.html",
+    "precache-manifest.7502b88f79e6f5c624b150e5394f2ae4.js": "/demos/presentimer/20200211/precache-manifest.7502b88f79e6f5c624b150e5394f2ae4.js",
+    "service-worker.js": "/demos/presentimer/20200211/service-worker.js",
+    "static/css/main.b22885c3.chunk.css.map": "/demos/presentimer/20200211/static/css/main.b22885c3.chunk.css.map",
+    "static/js/2.414286d3.chunk.js.LICENSE.txt": "/demos/presentimer/20200211/static/js/2.414286d3.chunk.js.LICENSE.txt",
+    "static/media/01more.mp3": "/demos/presentimer/20200211/static/media/01more.ac03e26c.mp3",
+    "static/media/02more.mp3": "/demos/presentimer/20200211/static/media/02more.7fed63e6.mp3",
+    "static/media/03more.mp3": "/demos/presentimer/20200211/static/media/03more.3a62e348.mp3",
+    "static/media/04more.mp3": "/demos/presentimer/20200211/static/media/04more.b3be5bd7.mp3",
+    "static/media/05more.mp3": "/demos/presentimer/20200211/static/media/05more.dfbc5a7b.mp3",
+    "static/media/10more.mp3": "/demos/presentimer/20200211/static/media/10more.8af07932.mp3",
+    "static/media/15more.mp3": "/demos/presentimer/20200211/static/media/15more.b68ae13e.mp3",
+    "static/media/20more.mp3": "/demos/presentimer/20200211/static/media/20more.e05db9e5.mp3",
+    "static/media/church.mp3": "/demos/presentimer/20200211/static/media/church.2aef5b33.mp3",
+    "static/media/cowbell_high.mp3": "/demos/presentimer/20200211/static/media/cowbell_high.e876331a.mp3",
+    "static/media/cowbell_mid.mp3": "/demos/presentimer/20200211/static/media/cowbell_mid.e2f7d973.mp3",
+    "static/media/endSession.mp3": "/demos/presentimer/20200211/static/media/endSession.bea35364.mp3",
+    "static/media/endTalk.mp3": "/demos/presentimer/20200211/static/media/endTalk.827a6bf5.mp3",
+    "static/media/hotel.mp3": "/demos/presentimer/20200211/static/media/hotel.ed7abcba.mp3",
+    "static/media/rideCup.mp3": "/demos/presentimer/20200211/static/media/rideCup.d2b083f3.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3fbe036.js",
+    "static/js/2.414286d3.chunk.js",
+    "static/css/main.b22885c3.chunk.css",
+    "static/js/main.85a9f582.chunk.js"
+  ]
+}
