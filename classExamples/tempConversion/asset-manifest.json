@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/classExamples/tempConversion/static/css/main.03158f0d.chunk.css",
+    "main.js": "/classExamples/tempConversion/static/js/main.57e45796.chunk.js",
+    "main.js.map": "/classExamples/tempConversion/static/js/main.57e45796.chunk.js.map",
+    "runtime-main.js": "/classExamples/tempConversion/static/js/runtime-main.c7120c3c.js",
+    "runtime-main.js.map": "/classExamples/tempConversion/static/js/runtime-main.c7120c3c.js.map",
+    "static/js/2.640f7b8d.chunk.js": "/classExamples/tempConversion/static/js/2.640f7b8d.chunk.js",
+    "static/js/2.640f7b8d.chunk.js.map": "/classExamples/tempConversion/static/js/2.640f7b8d.chunk.js.map",
+    "index.html": "/classExamples/tempConversion/index.html",
+    "precache-manifest.d3031d39e08a8dec287c0b331f7e368c.js": "/classExamples/tempConversion/precache-manifest.d3031d39e08a8dec287c0b331f7e368c.js",
+    "service-worker.js": "/classExamples/tempConversion/service-worker.js",
+    "static/css/main.03158f0d.chunk.css.map": "/classExamples/tempConversion/static/css/main.03158f0d.chunk.css.map",
+    "static/js/2.640f7b8d.chunk.js.LICENSE.txt": "/classExamples/tempConversion/static/js/2.640f7b8d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c7120c3c.js",
+    "static/js/2.640f7b8d.chunk.js",
+    "static/css/main.03158f0d.chunk.css",
+    "static/js/main.57e45796.chunk.js"
+  ]
+}
