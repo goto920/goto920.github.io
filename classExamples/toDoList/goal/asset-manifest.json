@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/classExamples/toDoList/goal/static/css/main.03158f0d.chunk.css",
+    "main.js": "/classExamples/toDoList/goal/static/js/main.696f09e8.chunk.js",
+    "main.js.map": "/classExamples/toDoList/goal/static/js/main.696f09e8.chunk.js.map",
+    "runtime-main.js": "/classExamples/toDoList/goal/static/js/runtime-main.8e69e89f.js",
+    "runtime-main.js.map": "/classExamples/toDoList/goal/static/js/runtime-main.8e69e89f.js.map",
+    "static/js/2.9b6ce27b.chunk.js": "/classExamples/toDoList/goal/static/js/2.9b6ce27b.chunk.js",
+    "static/js/2.9b6ce27b.chunk.js.map": "/classExamples/toDoList/goal/static/js/2.9b6ce27b.chunk.js.map",
+    "index.html": "/classExamples/toDoList/goal/index.html",
+    "precache-manifest.05b3eec22f11862910001a9b1d048294.js": "/classExamples/toDoList/goal/precache-manifest.05b3eec22f11862910001a9b1d048294.js",
+    "service-worker.js": "/classExamples/toDoList/goal/service-worker.js",
+    "static/css/main.03158f0d.chunk.css.map": "/classExamples/toDoList/goal/static/css/main.03158f0d.chunk.css.map",
+    "static/js/2.9b6ce27b.chunk.js.LICENSE.txt": "/classExamples/toDoList/goal/static/js/2.9b6ce27b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8e69e89f.js",
+    "static/js/2.9b6ce27b.chunk.js",
+    "static/css/main.03158f0d.chunk.css",
+    "static/js/main.696f09e8.chunk.js"
+  ]
+}
