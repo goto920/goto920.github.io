@@ -12,7 +12,7 @@ Version: 20210304<br/>
 
 <PRE>
 Tested on
-Firefox (Ubuntu), Chrome (Ubuntu)
+PC: Firefox (Ubuntu), Chrome (Ubuntu)
 </PRE>
 
 <hr />
@@ -20,6 +20,49 @@ Firefox (Ubuntu), Chrome (Ubuntu)
 <img src="./simple-mixer.png" width = "320" border = "3"/>
 </A>
 <HR>
+
+<H2>How to use</H2>
+
+<OL>
+<LI>Prepare audio stem files (separate files for vocal, bass, drums, etc...)
+<UL>
+<LI>Single file is fine, of course.
+<LI>Supported any audio file formats which your browser can play. 
+Typically wav, mp3, aac etc.
+</UL>
+<LI>start the App by clicking the image (link).
+<LI>Open stem audio files of single file and wait until loades.
+<UL>
+<LI>Local files or files, or 
+<LI>files in your cloud drive where your browser can read.
+</UL>
+<LI>Adjust mix balance with "Channel Gain".<br />
+(Adjust playback volume with Master Gain)
+<LI>Play, Pause, Stop, Repeat with Player controls and Speed/Pitch controls.
+<UL>
+<LI>Only slowing down (&le; 100 %) works for realtime playback.
+<LI>For &gt; 100, use export.
+</UL>
+<LI>Export file will be filename mix-utctime.wav.
+<UL>
+<LI>Processing time is within 30 seconds (depends on the device used).
+<LI>Save the exported file and playback with an audio player.
+<LI>Downloading the exported file on Mobile Safari requires special 
+operation. See the note below
+</UL>
+</OL>
+
+<H3>Note on iOS12</H3>
+
+My iPhone/iPod Touch (iOS12) requires special operation to store the 
+exported data. 
+Blob window pops up and it is possible to save the data 
+on iCloud Drive. 
+You want to rename the file with extension".wav", 
+because the filename will not be set automatically. 
+The problem of the specification might be solved already 
+on iOS 13. 
+Note iOS 13 does not support older devices such as my iPod Touch and iPhone6. 
 
 <P>
 Source code (React, Node.js JavaScript)
