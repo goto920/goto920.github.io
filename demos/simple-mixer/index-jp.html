@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<title>KG's Simple Mixer</title>
+<META charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</HEAD>
+<BODY>
+<a href="index.html">English version</a>
+<h1>KG's Simple Mixer</h1>
+
+Version: 20210307<br/>
+
+<PRE>
+Tested on
+PC: Firefox (Ubuntu), Chrome (Ubuntu)
+</PRE>
+
+<hr />
+<A HREF="20210307/">
+<img src="./simple-mixer.png" width = "320" border = "3"/>
+</A>
+<HR>
+
+<H2>使い方</H2>
+
+<OL>
+<LI>Stemファイル (同じ曲のパート別ファイル、vocal, bass, drums, など) を用意
+<UL>
+<LI>Stemでない1ファイルでも使えます (もちろん)
+<LI>オーディオファイル形式はお使いのブラウザで再生できるもの (wav, mp3, aacなど)
+<LI>音源の例 (自作自演)
+<A HREF="https://drive.google.com/drive/folders/11tRoLGjKvuE-qdSL8fpKrWCH5WT_uM0s?usp=sharing">Stem files</A>
+</UL>
+<LI>上のイメージ(リンク)をクリックして起動
+<LI>Stemファイルを選択して、ロードされるまで待つ (数秒)
+<UL>
+<LI>ファイルはローカルかWebブラウザでアクセスできるクラウドドライブに置く
+</UL>
+<LI>トラックゲインでミックスバランスを調整 (マスターゲインも調整)
+<LI>再生/一時停止/終了、ループ再生(AB)
+<UL>
+<LI>実時間再生では速度は100%まで
+<LI>100%より速くする場合は、エクスポート(ダウンロードできる)か
+バッチ処理後の再生(一番右のボタン)で
+</UL>
+<LI>エクスポートされるファイル名は、mix-UTC時刻.wav.
+<UL>
+<LI>5分くらいの曲は10秒程度で処理される (スロー加工処理は少し長い)
+<LI>保存して再生
+<LI>iOS 12のSafariではダウンロード操作がやや複雑。下記を参考にしてください。
+</UL>
+</OL>
+
+<H3>iOS12のための注意</H3>
+
+Blob ウィンドウがでるので、それをiCloud Driveなどに保存する。
+ファイル名に拡張子がない場合はファイル名を変更して ".wav" 
+を追加する。
+iOS 13 では、この問題は発生しないそうです。
+
+<P>
+Source code (React, Node.js JavaScript)
+<A HREF="https://github.com/goto920/">
+https://github.com/goto920/</A>
+</P>
+<HR>
+Contact: goto at kmgoto.jp
+</BODY>
+</HTML>
