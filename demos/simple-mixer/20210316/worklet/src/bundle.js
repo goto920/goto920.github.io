@@ -104,7 +104,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   Copy every file here and fix import lines 
   (export line of node_modules/soundtouchjs/dist/soundtouch.js )
 
-  browserify this-file.js -p esmify > bundle.js
+  browserify this-file.js -p esmify > ../bundle.js
+  (as public/worklet/bundle.js)
 
   To be loaded by 
    audioCtx.audioWorklet.loadModule('worklet/bundle.js)
@@ -125,7 +126,8 @@ const noop = function () {
 class MySoundTouchProcessor extends AudioWorkletProcessor {
   constructor(options) {
     super(); //    super(options);
-    // console.log('worklet', options);
+
+    this.name = this.constructor.name; // console.log(this.name, options);
 
     /*
         options.processorOptions {
@@ -137,14 +139,13 @@ class MySoundTouchProcessor extends AudioWorkletProcessor {
         }
     */
 
-    this.options = options.processorOptions; // console.log('this.options', this.options);
-
+    this.options = options.processorOptions;
     this.nOutputFrames = 0;
     this.nVirtualOutputFrames = 0;
     this.playingAt = 0;
     this.lastPlayingAt = 0;
     this.updateInterval = this.options.updateInterval;
-    this.soundtouch = new _soundtouchModified.SoundTouch(); // console.log('this.soundtouch', this.soundtouch);
+    this.soundtouch = new _soundtouchModified.SoundTouch(); // console.log(this.name, this.soundtouch);
 
     this.filter = new _MyFilterModified.default(this.soundtouch, noop);
     this.recordedSamples = [[], []];
@@ -162,7 +163,6 @@ class MySoundTouchProcessor extends AudioWorkletProcessor {
         command,
         args
       } = event.data;
-      console.log('Worklet ', command, args[0]);
 
       switch (command) {
         case 'setTempo':
@@ -203,12 +203,12 @@ class MySoundTouchProcessor extends AudioWorkletProcessor {
           });
           break;
 
-        case 'getRecordedSamples':
-          this.port.postMessage({
-            status: 'OK',
-            args: [command, this.recordedSamples]
-          });
-          break;
+        /*
+                case 'getRecordedSamples':
+                  this.port.postMessage({
+                    status: 'OK', args: [command, this.recordedSamples]});
+                break;
+        */
 
         default:
       } // end switch
@@ -219,11 +219,13 @@ class MySoundTouchProcessor extends AudioWorkletProcessor {
 
 
   stop() {
+    console.log(this.name, '.stop()');
     this.process = null;
     this.port.postMessage({
       command: 'End',
       args: [this.recordedSamples]
     });
+    console.log(this.name, 'Worklet --> Node', command);
   }
 
   updatePlayingAt() {
@@ -248,23 +250,17 @@ class MySoundTouchProcessor extends AudioWorkletProcessor {
       }
     } else {
       if (this.nVirtualOutputFrames <= this.options.nInputFrames) {
-        const nOutputFrames = this.processFilter(inputs[0], outputs[0]); // console.log('nOutputFrames, tempo', this.soundtouch.tempo);
-
+        const nOutputFrames = this.processFilter(inputs[0], outputs[0]);
         this.nVirtualOutputFrames += nOutputFrames * this.soundtouch.tempo;
       } else {
         this.stop();
         return false;
       }
-    } // console.log('worklet virtualoutFrames', this.nVirtualOutputFrames)
-
+    }
 
     this.playingAt = this.nVirtualOutputFrames / this.options.sampleRate;
 
     if (this.playingAt - this.lastPlayingAt >= this.options.updateInterval) {
-      /*
-            console.log('worklet playing', this.playingAt, 
-              this.nVirtualOutputFrames, this.options.nInputFrames);
-      */
       this.updatePlayingAt(this.playingAt);
       this.lastPlayingAt = this.playingAt;
     }
