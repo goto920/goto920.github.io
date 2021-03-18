@@ -21,16 +21,18 @@ const checkWebAudioAPI = (function() {
   let isAddModule = false;
   let isOfflineAddModule = false;
 
-  if (AudioContext) isAudioContext = true;
-  if (OfflineAudioContext) isOfflineAudioContext = true;
-  if (AudioWorkletNode) isAudioWorkletNode = true;
+  if (typeof AudioContext === 'function') isAudioContext = true;
+  if (typeof OfflineAudioContext === 'function') isOfflineAudioContext = true;
+  if (typeof AudioWorkletNode === 'function') isAudioWorkletNode = true;
 
   if (isAudioContext) {
     const context = new AudioContext();
     try {
-      if (context.audioWorklet) isAudioWorklet = true;
-      if (typeof context.audioWorklet.addModule === 'function') 
+      if (typeof context.audioWorklet !== 'undefined') {
+        isAudioWorklet = true;
+        if (typeof context.audioWorklet.addModule === 'function') 
         isAddModule = true;
+      }
     } catch(e) {console.log(e);}
     context.close();
   }
@@ -38,9 +40,11 @@ const checkWebAudioAPI = (function() {
   if (isOfflineAudioContext){
     const context = new OfflineAudioContext(1,1,44100);
     try {
-      if (context.audioWorklet) isOfflineAudioWorklet = true;
-      if (typeof context.audioWorklet.addModule === 'function') 
-         isOfflineAddModule = true;
+      if (typeof context.audioWorklet !== 'undefined'){ 
+        isOfflineAudioWorklet = true;
+        if (typeof context.audioWorklet.addModule === 'function') 
+          isOfflineAddModule = true;
+        }
     } catch(e) {console.log(e);}
   }
 
