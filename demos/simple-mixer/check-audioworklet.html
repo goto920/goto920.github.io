@@ -56,6 +56,8 @@ const checkWebAudioAPI = (function() {
 }
 );
 
+
+const browser = window.navigator.userAgent;
 const result = checkWebAudioAPI();
 
 const {
@@ -71,12 +73,13 @@ const isOfflineAudioWorkletAvailable
 
 const str1 =  isAudioWorkletAvailable ? 'true' : 'false' ;
 const str2 =  isOfflineAudioWorkletAvailable ? 'true' : 'false' ;
-const summary = '<b>(summary) isAudioWorkletAvailable: ' 
-    + ' online ' +  str1 + ', offline ' + str2 + '\n</b>';
+const summary = '(summary) isAudioWorkletAvailable: ' 
+    + ' online=' +  str1 + ', offline=' + str2 + '\n';
 
 document.getElementById('result').innerHTML 
-  = '<tt><pre>' + JSON.stringify(result) + '\n' 
-     + summary + '</pre></tt>';
+  = '<tt><pre>' + browser + '\n' 
+     + JSON.stringify(result) + '\n' 
+     + '\n' + summary + '</pre></tt>';
 </script>
 
 </body>
