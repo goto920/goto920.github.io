@@ -3,9 +3,9 @@
 <meta charset="utf-8">
 </head>
 <body>
+<p id="result"></p>
+
 <script>
-
-
 const checkWebAudioAPI = (function() {
 
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -56,7 +56,6 @@ const checkWebAudioAPI = (function() {
 );
 
 const result = checkWebAudioAPI();
-console.log(result);
 
 const {
     isAudioContext, isOfflineAudioContext, isAudioWorkletNode, 
@@ -69,11 +68,15 @@ const isOfflineAudioWorkletAvailable
   = isOfflineAudioContext & isAudioWorkletNode 
    & isOfflineAudioWorklet & isOfflineAddModule;
 
-console.log('isAudioWorkletAvailable(Online)', 
-    isAudioWorkletAvailable ? 'true' : 'false');
-console.log('isAudioWorkletAvailable(Offline)', 
-    isOfflineAudioWorkletAvailable ? 'true' : 'false');
+const str1 =  isAudioWorkletAvailable ? 'true' : 'false' ;
+const str2 =  isOfflineAudioWorkletAvailable ? 'true' : 'false' ;
+const summary = '<b>(summary) isAudioWorkletAvailable: ' 
+    + ' online ' +  str1 + ', offline ' + str2 + '\n</b>';
 
+document.getElementById('result').innerHTML 
+  = '<tt><pre>' + JSON.stringify(result) + '\n' 
+     + summary + '</pre></tt>';
 </script>
+
 </body>
 </html>
