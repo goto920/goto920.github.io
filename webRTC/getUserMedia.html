@@ -11,18 +11,26 @@ localVideo (audio muted)<br/>
 <video id="localVideoAndAudio" autoplay controls muted></video>
 <p id="deviceInfoStr"></p>
 <p id="codecs"></p>
+<p id="userAgent"></p>
 
 <script>
 
 let localVideoAndAudio = document.getElementById("localVideoAndAudio");
 let deviceInfoStr = document.getElementById("deviceInfoStr");
 let codecs = document.getElementById("codecs");
+let userAgent = document.getElementById("userAgent");
+userAgent.innerHTML = "UserAgent: " + navigator.userAgent + '<hr/>';
 
-let codecList = RTCRtpSender.getCapabilities("video").codecs;
-codecs.innerHTML = "Web RTC Video codecs by getCapability():<br/>" 
+if (RTCRtpSender.getCapabilities === 'function'){
+  let codecList = RTCRtpSender.getCapabilities("video").codecs;
+  codecs.innerHTML = "Web RTC Video codecs by getCapability():<br/>" 
     + JSON.stringify(codecList) + "<hr/>";
-codecList = RTCRtpSender.getCapabilities("audio").codecs;
-codecs.innerHTML += "Web RTC Audio codecs by getCapability():<br/>" + JSON.stringify(codecList) + "<hr/>";
+  codecList = RTCRtpSender.getCapabilities("audio").codecs;
+  codecs.innerHTML += "Web RTC Audio codecs by getCapability():<br/>" 
+  + JSON.stringify(codecList) + "<hr/>";
+} else {
+  codecs.innerHTML = "RTCRtpSender.getCapability() is NOT supported";
+}
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
     console.log("navigator.mediaDevices.enumerateDevices() not supported."); 
