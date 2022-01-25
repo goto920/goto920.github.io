@@ -10,26 +10,27 @@ localVideo (audio muted)<br/>
 
 <video id="localVideoAndAudio" autoplay controls muted></video>
 <p id="deviceInfoStr"></p>
-<p id="codecs"></p>
+<p id="capabilities"></p>
 <p id="userAgent"></p>
 
 <script>
 
 let localVideoAndAudio = document.getElementById("localVideoAndAudio");
 let deviceInfoStr = document.getElementById("deviceInfoStr");
-let codecs = document.getElementById("codecs");
+let capabilities = document.getElementById("capabilities");
 let userAgent = document.getElementById("userAgent");
 userAgent.innerHTML = "UserAgent: " + navigator.userAgent + '<hr/>';
 
-if (RTCRtpSender.getCapabilities === 'function'){
-  let codecList = RTCRtpSender.getCapabilities("video").codecs;
-  codecs.innerHTML = "Web RTC Video codecs by getCapability():<br/>" 
-    + JSON.stringify(codecList) + "<hr/>";
-  codecList = RTCRtpSender.getCapabilities("audio").codecs;
-  codecs.innerHTML += "Web RTC Audio codecs by getCapability():<br/>" 
-  + JSON.stringify(codecList) + "<hr/>";
+if (RTCRtpSender.getCapabilities){ // static function
+  let cap = RTCRtpSender.getCapabilities("video");
+  capabilities.innerHTML = "Web RTC Video getCapabilities():<br/>" 
+    + JSON.stringify(cap,null,'\t') + "<hr/>";
+
+  cap = RTCRtpSender.getCapabilities("audio");
+  capabilities.innerHTML += "Web RTC Audio getCapabilities():<br/>" 
+  + JSON.stringify(cap,null,'\t') + "<hr/>";
 } else {
-  codecs.innerHTML = "RTCRtpSender.getCapability() is NOT supported";
+  capabilities.innerHTML = "RTCRtpSender.getCapabilities() is NOT supported";
 }
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
