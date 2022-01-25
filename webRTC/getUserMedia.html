@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>MediaStreamTrack settings and RTCRtpSender codecs</h1>
+
+localVideo (audio muted)<br/>
+
+<video id="localVideoAndAudio" autoplay controls muted></video>
+<p id="deviceInfoStr"></p>
+<p id="codecs"></p>
+
+<script>
+
+let localVideoAndAudio = document.getElementById("localVideoAndAudio");
+let deviceInfoStr = document.getElementById("deviceInfoStr");
+let codecs = document.getElementById("codecs");
+
+let codecList = RTCRtpSender.getCapabilities("video").codecs;
+codecs.innerHTML = "Web RTC Video codecs by getCapability():<br/>" 
+    + JSON.stringify(codecList) + "<hr/>";
+codecList = RTCRtpSender.getCapabilities("audio").codecs;
+codecs.innerHTML += "Web RTC Audio codecs by getCapability():<br/>" + JSON.stringify(codecList) + "<hr/>";
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+    console.log("navigator.mediaDevices.enumerateDevices() not supported."); 
+    // return;
+}
+
+let constraints =  {
+     video: {frameRate: 1, width: 320, height: 240},
+     audio: {autoGainControl: false, 
+             echoCancellation: false, 
+             noiseSuppression: false} 
+    };
+
+// constraints.audio = true;
+
+navigator.mediaDevices.getUserMedia(constraints)
+  .then (function(stream) {
+
+    console.log("Success");
+    deviceInfoStr.innerHTML = "getSettings() for each track:<br/>" 
+
+    let tracks = stream.getVideoTracks()
+    deviceInfoStr.innerHTML += "Video settings: " 
+        + JSON.stringify(tracks[0].getSettings(),null,'\t') + "<hr/>";
+    localVideoAndAudio.srcObject = stream;
+
+    tracks = stream.getAudioTracks();
+    tracks.forEach ( (track) => {
+     deviceInfoStr.innerHTML += "Audio settings: " 
+        + JSON.stringify(track.getSettings(),null,'\t') + "<hr/>";
+     // track.applyConstraints(newConstraints);
+     // console.log(track.getSettings());
+    });
+
+    let mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+
+   })
+   .catch(function(err) {
+      console.log(err);
+   });
+
+</script>
