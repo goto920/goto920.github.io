@@ -9,61 +9,78 @@
 localVideo (audio muted)<br/>
 
 <video id="localVideoAndAudio" autoplay controls muted></video>
+
+<hr/>
+<h2>Device List (enumerateDevices())</h2>
+<p id="deviceList"></P>
+<hr/>
+<h2>Device Setting (track.getSetting)</h2>
 <p id="deviceInfoStr"></p>
+<hr/>
+<h2>RTCRtpSender.getCapabilities()</h2>
 <p id="capabilities"></p>
+<hr/>
+<h2>User Agent (navigator.userAgent)</h2>
 <p id="userAgent"></p>
 
 <script>
 
 let localVideoAndAudio = document.getElementById("localVideoAndAudio");
+let deviceList = document.getElementById("deviceList");
 let deviceInfoStr = document.getElementById("deviceInfoStr");
 let capabilities = document.getElementById("capabilities");
+
 let userAgent = document.getElementById("userAgent");
 userAgent.innerHTML = "UserAgent: " + navigator.userAgent + '<hr/>';
 
+if (navigator.mediaDevices.enumerateDevices){
+    navigator.mediaDevices.enumerateDevices()
+    .then (function(devices) {
+       listItems(devices,deviceList);
+       setupMedia();
+    })
+    .catch(function(err) { deviceList.innerHTML = err; }
+    );
+} else deviceList.innerHTML = "enumeratedevices not available";
+
 if (RTCRtpSender.getCapabilities){ // static function
   let cap = RTCRtpSender.getCapabilities("video");
-  capabilities.innerHTML = "Web RTC Video getCapabilities():<br/>" 
-    + JSON.stringify(cap,null,'\t') + "<hr/>";
+  listItems(cap, capabilities);
 
   cap = RTCRtpSender.getCapabilities("audio");
-  capabilities.innerHTML += "Web RTC Audio getCapabilities():<br/>" 
-  + JSON.stringify(cap,null,'\t') + "<hr/>";
+  listItems(cap, capabilities);
 } else {
   capabilities.innerHTML = "RTCRtpSender.getCapabilities() is NOT supported";
 }
 
-if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-    console.log("navigator.mediaDevices.enumerateDevices() not supported."); 
-    // return;
-}
 
-let constraints =  {
+function setupMedia(){
+  let constraints =  {
      video: {frameRate: 1, width: 320, height: 240},
      audio: {autoGainControl: false, 
              echoCancellation: false, 
              noiseSuppression: false} 
-    };
+  };
 
 // constraints.audio = true;
 
-navigator.mediaDevices.getUserMedia(constraints)
+  navigator.mediaDevices.getUserMedia(constraints)
   .then (function(stream) {
-
-    console.log("Success");
-    deviceInfoStr.innerHTML = "getSettings() for each track:<br/>" 
-
+    console.log("getUserMedia");
     let tracks = stream.getVideoTracks()
-    deviceInfoStr.innerHTML += "Video settings: " 
-        + JSON.stringify(tracks[0].getSettings(),null,'\t') + "<hr/>";
+    tracks.forEach ( (track) => {
+      deviceInfoStr.innerHTML 
+        += 'Video: ' 
+          + JSON.stringify(track.getSettings(), null, '\t') + '<br/>';
+    });
+
     localVideoAndAudio.srcObject = stream;
 
     tracks = stream.getAudioTracks();
     tracks.forEach ( (track) => {
-     deviceInfoStr.innerHTML += "Audio settings: " 
-        + JSON.stringify(track.getSettings(),null,'\t') + "<hr/>";
-     // track.applyConstraints(newConstraints);
-     // console.log(track.getSettings());
+      deviceInfoStr.innerHTML 
+        += 'Audio'
+          + JSON.stringify(track.getSettings(), null, '\t');
     });
 
     let mediaRecorder = new MediaRecorder(stream);
@@ -73,5 +90,11 @@ navigator.mediaDevices.getUserMedia(constraints)
    .catch(function(err) {
       console.log(err);
    });
+} // end setupMedia()
 
+ function listItems(items,dom) {
+    items.forEach ((item) => {
+      dom.innerHTML += JSON.stringify(item, null, '\t') + '<br/>';
+    });
+ }
 </script>
