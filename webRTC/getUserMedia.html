@@ -6,19 +6,23 @@
 <body>
 <h1>MediaStreamTrack settings and RTCRtpSender codecs</h1>
 
-localVideo (audio muted)<br/>
+<h2>localVideo (audio muted) (click speaker icon to unmute)</h2>
 
 <video id="localVideoAndAudio" autoplay controls muted></video>
 
 <hr/>
-<h2>Device List (enumerateDevices())</h2>
-<p id="deviceList"></P>
-<h2>RTCRtpSender.getCapabilities()</h2>
-<p id="capabilities"></p>
-<h2>Device Setting (track.getSetting)</h2>
-<p id="deviceInfoStr"></p>
 <h2>User Agent (navigator.userAgent)</h2>
 <p id="userAgent"></p>
+<hr/>
+<h2>Device List (enumerateDevices())</h2>
+<p id="deviceList"></P>
+<hr/>
+<h2>Device Setting (track.getSetting)</h2>
+<p id="deviceInfoStr"></p>
+<hr/>
+<h2>RTCRtpSender/Receiver codecs</h2>
+<p id="capabilities"></p>
+<hr/>
 
 <script>
 
@@ -28,7 +32,7 @@ let deviceInfoStr = document.getElementById("deviceInfoStr");
 let capabilities = document.getElementById("capabilities");
 
 let userAgent = document.getElementById("userAgent");
-userAgent.innerHTML = "UserAgent: " + navigator.userAgent + '<hr/>';
+userAgent.innerHTML = "UserAgent: " + navigator.userAgent;
 
 if (navigator.mediaDevices.enumerateDevices){
     navigator.mediaDevices.enumerateDevices()
@@ -40,15 +44,30 @@ if (navigator.mediaDevices.enumerateDevices){
     );
 } else deviceList.innerHTML = "enumeratedevices not available";
 
-if (RTCRtpSender.getCapabilities){ // static function
-  let cap = RTCRtpSender.getCapabilities("video");
-  listItems(cap, capabilities);
+for(let obj of [RTCRtpSender,RTCRtpReceiver]){
+if (obj.getCapabilities){ // static function
+  capabilities.innerHTML += obj.name + "(video)<br/>";
+  let cap = obj.getCapabilities("video");
+  listItems(cap.codecs, capabilities);
+  cap = obj.getCapabilities("audio");
+  capabilities.innerHTML += obj.name + "(audio)<br/>";
+  listItems(cap.codecs, capabilities);
+} else {
+  capabilities.innerHTML = obj.name + "getCapabilities() is NOT supported";
+}
+}
 
+if (RTCRtpSender.getCapabilities){ // static function
+  capabilities.innerHTML += "Sender (video)<br/>";
+  let cap = RTCRtpSender.getCapabilities("video");
+  listItems(cap.codecs, capabilities);
   cap = RTCRtpSender.getCapabilities("audio");
-  listItems(cap, capabilities);
+  capabilities.innerHTML += "Sender (audio)<br/>";
+  listItems(cap.codecs, capabilities);
 } else {
   capabilities.innerHTML = "RTCRtpSender.getCapabilities() is NOT supported";
 }
+
 
 
 function setupMedia(){
@@ -95,3 +114,5 @@ function setupMedia(){
     });
  }
 </script>
+</body>
+</html>
