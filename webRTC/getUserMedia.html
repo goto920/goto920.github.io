@@ -76,7 +76,7 @@ function setupMedia(){
     tracks = stream.getAudioTracks();
     tracks.forEach ( (track) => {
       deviceInfoStr.innerHTML 
-        += 'Audio'
+        += 'Audio: '
           + JSON.stringify(track.getSettings(), null, '\t');
     });
 
