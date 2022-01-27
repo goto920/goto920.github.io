@@ -45,30 +45,17 @@ if (navigator.mediaDevices.enumerateDevices){
 } else deviceList.innerHTML = "enumeratedevices not available";
 
 for(let obj of [RTCRtpSender,RTCRtpReceiver]){
-if (obj.getCapabilities){ // static function
-  capabilities.innerHTML += obj.name + "(video)<br/>";
-  let cap = obj.getCapabilities("video");
-  listItems(cap.codecs, capabilities);
-  cap = obj.getCapabilities("audio");
-  capabilities.innerHTML += obj.name + "(audio)<br/>";
-  listItems(cap.codecs, capabilities);
-} else {
-  capabilities.innerHTML = obj.name + "getCapabilities() is NOT supported";
+  if (obj.getCapabilities){ // static function
+    capabilities.innerHTML += obj.name + "(video)<br/>";
+    let cap = obj.getCapabilities("video");
+    listItems(cap.codecs, capabilities);
+    cap = obj.getCapabilities("audio");
+    capabilities.innerHTML += obj.name + "(audio)<br/>";
+    listItems(cap.codecs, capabilities);
+  } else {
+    capabilities.innerHTML = obj.name + "getCapabilities() is NOT supported";
+  }
 }
-}
-
-if (RTCRtpSender.getCapabilities){ // static function
-  capabilities.innerHTML += "Sender (video)<br/>";
-  let cap = RTCRtpSender.getCapabilities("video");
-  listItems(cap.codecs, capabilities);
-  cap = RTCRtpSender.getCapabilities("audio");
-  capabilities.innerHTML += "Sender (audio)<br/>";
-  listItems(cap.codecs, capabilities);
-} else {
-  capabilities.innerHTML = "RTCRtpSender.getCapabilities() is NOT supported";
-}
-
-
 
 function setupMedia(){
   let constraints =  {
