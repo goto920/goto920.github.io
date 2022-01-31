@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>MediaStreamTrack settings with device selection</h1>
+<hr/>
+Video input: <select id="videoInput" onChange="updateId()">
+<option value="">Select a video device</option>
+</select>
+Audio input: <select id="audioInput" onChange="updateId()">
+<option value="">Select an audio device</option>
+</select><br/>
+<span id="selection"></span>
+<hr/>
+localVideo (audio muted)<br/>
+
+<video id="localVideoAndAudio" autoplay controls muted></video>
+<!-- plays also audio. Audio is muted to prevent feedback -->
+
+<hr/>
+<h2>Device List (enumerateDevices())</h2>
+<p id="deviceList"></P>
+<h2>RTCRtpSender/Receiver.getCapabilities()</h2>
+<p id="capabilities"></p>
+<h2>Device Setting (track.getSetting)</h2>
+<p id="deviceInfoStr"></p>
+<h2>User Agent (navigator.userAgent)</h2>
+<p id="userAgent"></p>
+<h2>Supported Constraints</h2>
+<p id="constraintList"></p>
+<hr/>
+
+<script>
+
+let videoInput = document.getElementById("videoInput");
+let audioInput = document.getElementById("audioInput");
+let selection = document.getElementById("selection");
+
+let localVideoAndAudio = document.getElementById("localVideoAndAudio");
+let deviceList = document.getElementById("deviceList");
+let deviceInfoStr = document.getElementById("deviceInfoStr");
+let capabilities = document.getElementById("capabilities");
+let constraintList = document.getElementById("constraintList");
+let userAgent = document.getElementById("userAgent");
+userAgent.innerHTML = navigator.userAgent;
+
+let audioDeviceId = null;
+let videoDeviceId = null;
+
+let constraints =  {
+     video: {frameRate: 1, width: 320, height: 240},
+     audio: {autoGainControl: false, 
+             echoCancellation: false, 
+             noiseSuppression: false} 
+};
+
+listSupportedConstraints(constraintList);
+selectDevices();
+
+function listSupportedConstraints(constraintList){
+  let supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+  // console.log(supportedConstraints);
+  for (let constraint in supportedConstraints) {
+    if (supportedConstraints.hasOwnProperty(constraint)) 
+      constraintList.innerHTML += "<code>" + constraint + "</code><br/>";
+  }
+}
+
+function selectDevices() {
+
+  console.log("selectDevices");
+  navigator.mediaDevices.getUserMedia({video: true, audio: true})
+  .then (function (stream) {
+     if (navigator.mediaDevices.enumerateDevices){
+      navigator.mediaDevices.enumerateDevices()
+      .then (function(devices) {
+         listItems(devices,deviceList);
+        stream.getTracks().forEach(function(track) { track.stop();});
+        setupMedia();
+      }) 
+      .catch(function(err) { deviceList.innerHTML = err; });
+      // end enumerateDevices()
+     } else deviceList.innerHTML = "enumeratedevices not available";
+     // end if
+  }) 
+  .catch (function(err) { 
+    console.log(err); 
+  }); // end getUserMedia()
+
+} // end selectDevices()
+
+function updateId() {
+   let video = null;
+   let audio = null;
+   video = videoInput.options[videoInput.selectedIndex];
+   audio = audioInput.options[audioInput.selectedIndex];
+
+   selection.innerHTML = 'Video Input Device: ' 
+       + video.text + '/deviceId: ' + video.value + "<br/>";
+   selection.innerHTML += 'Audio Input Device: '
+       + audio.text + '/deviceId: ' + audio.value + "<br/>";
+
+   videoDeviceId = video.value;
+   audioDeviceId = audio.value;
+}
+
+
+function setupMedia(){
+  constraints.video.deviceId = videoDeviceId;
+  constraints.audio.deviceId = audioDeviceId;
+
+  navigator.mediaDevices.getUserMedia(constraints)
+  .then (function(stream) {
+    // console.log("getUserMedia");
+    let tracks = stream.getVideoTracks()
+    tracks.forEach ( (track) => {
+      deviceInfoStr.innerHTML 
+        += 'Video: ' 
+          + JSON.stringify(track.getSettings(), null, '\t') + '<br/>';
+    });
+
+    localVideoAndAudio.srcObject = stream;
+
+    tracks = stream.getAudioTracks();
+    tracks.forEach ( (track) => {
+      deviceInfoStr.innerHTML 
+        += 'Audio: '
+          + JSON.stringify(track.getSettings(), null, '\t');
+    });
+
+    getRTCcapability(RTCRtpSender);
+    getRTCcapability(RTCRtpReceiver);
+
+    let mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+
+   })
+   .catch(function(err) {
+      console.log(err);
+   });
+} // end setupMedia()
+
+ function listItems(items,dom) {
+    // console.log(items.name);
+    items.forEach ((item) => {
+      dom.innerHTML += JSON.stringify(item, null, '\t') + '<br/>';
+      if (item.kind === 'videoinput')
+        videoInput.add(new Option(item.label,item.deviceId),undefined);
+      else if (item.kind === 'audioinput')
+        audioInput.add(new Option(item.label,item.deviceId),undefined);
+    });
+ }
+
+function getRTCcapability(obj) {
+
+ if (obj.getCapabilities){ // static function
+   capabilities.innerHTML += obj.name + "<br/>";
+   let cap = obj.getCapabilities("video");
+   listItems(cap, capabilities);
+   cap = obj.getCapabilities("audio");
+   listItems(cap, capabilities);
+ } else {
+   capabilities.innerHTML 
+      += obj.name + ".getCapabilities() is NOT supported" + "<br/>";
+ }
+
+}
+</script>

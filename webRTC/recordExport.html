@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Record MediaStream video and Export</h1>
+
+<h2>localVideo (audio muted) (click speaker icon to unmute)</h2>
+localVideo<br/>
+<video id="localVideo" width="640" 
+  autoplay playsinline controls muted></video><br/>
+<button id="start" onclick = "openMedia()">OpenMedia</button>
+&nbsp;&nbsp;
+<button id="record" onclick = "record()">Record</button>
+&nbsp;&nbsp;
+<button id="stop" onclick = "stop()">Stop</button>
+&nbsp;&nbsp;
+<button id="play" onclick = "play()">Play</button>
+&nbsp;&nbsp;
+<button id="exportFile" onclick = "exportFile()">Export</button>
+<hr/>
+<h2>Message</h2>
+<p id="message"></p>
+<hr/>
+
+<script>
+
+let localVideo = document.getElementById("localVideo");
+let message = document.getElementById("message");
+    message.innerHTML += "UserAgent: " + navigator.userAgent;
+
+let stream = null;
+async function openMedia(){
+  console.log('openMedia');
+  let constraints =  {
+     video: true,
+     audio: {autoGainControl: false, 
+             echoCancellation: false, 
+             noiseSuppression: false} 
+  };
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints)
+    localVideo.srcObject = stream;
+   } catch (err) { 
+     alert(err);
+   }
+} // end openMedia()
+
+let options = {
+  audioBitsPerSecond : 128000,
+  videoBitsPerSecond : 2500000,
+  mimeType : 'video/webm'
+};
+
+let recorder = null;
+let exportData = null;
+function record() {
+  recorder = new MediaRecorder(stream);
+  recorder.start();
+  recorder.ondataavailable = function(e) { 
+    exportData = e.data;
+  }
+  recorder.onstop = function(e) { 
+    stream.getTracks().forEach(track => track.stop());
+    localVideo.srcObject = null;
+  }
+}
+
+function stop(){ 
+  if (recorder) recorder.stop(); 
+}
+
+function pause(){ recorder.pause();}
+function resume(){ recorder.resume();}
+function play(){
+  // localVideo.srcObject = exportData; 
+  localVideo.src = URL.createObjectURL(exportData); 
+}
+
+function exportFile(){
+  const saveLink = document.createElement("a");
+  saveLink.href = URL.createObjectURL(exportData);
+  saveLink.download = "video-export.webm";
+  document.body.appendChild(saveLink);
+  saveLink.click();
+  document.body.removeChild(saveLink);
+}
+
+</script>
+</body>
+</html>
