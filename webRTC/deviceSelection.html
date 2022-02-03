@@ -77,9 +77,11 @@ function gotDevices(devices) {
       console.log('Other kind of device: ', deviceInfo); 
     }
 
-    message.innerHTML += "DeviceInfo: "  
+    message.innerHTML += 
+           "DeviceInfo: "  
            + deviceInfo.kind 
-           + ": " + deviceInfo.label + ", " + deviceInfo.deviceId + "<br/>"; 
+           + ": " + deviceInfo.label + ", " + deviceInfo.deviceId + "<br/>";
+
   } 
 
   // This part is difficult to understand 
