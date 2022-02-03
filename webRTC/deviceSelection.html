@@ -56,7 +56,7 @@ function gotDevices(devices) {
     }
   });
 
-  for (let i = 0; i !== devices.length; ++i){
+  for (let i = 0; i < devices.length; ++i){
     const deviceInfo = devices[i];
     const option = document.createElement('option');
     option.value = deviceInfo.deviceId;
@@ -79,7 +79,7 @@ function gotDevices(devices) {
 
     message.innerHTML += "DeviceInfo: "  
            + deviceInfo.kind 
-           + ": " + deviceInfo.label + ", " + deviceInfo.deviceId + <br/>; 
+           + ": " + deviceInfo.label + ", " + deviceInfo.deviceId + "<br/>"; 
   } 
 
   // This part is difficult to understand 
@@ -158,7 +158,7 @@ audioSrcSelector.onchange = start;
 audioSrcSelector.onchange = changeAudioDestination;
 videoSrcSelector.onchange = start;
 
-message.innerHTML += "Browser: " +  navigator.userAgent;
+message.innerHTML += "Browser: " +  navigator.userAgent + "<br/>";
 start();
 
 </script>
