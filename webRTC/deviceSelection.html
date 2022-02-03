@@ -56,11 +56,14 @@ function gotDevices(devices) {
     }
   });
 
+  message.innerHTML += "DeviceInfo update <br/>";
+
   for (let i = 0; i < devices.length; ++i){
     const deviceInfo = devices[i];
     const option = document.createElement('option');
     option.value = deviceInfo.deviceId;
    
+
     if (deviceInfo.kind === 'audioinput') {
       option.text = deviceInfo.label 
         || `microphone ${audioSrcSelector.length + 1}`; // back quote
@@ -80,7 +83,7 @@ function gotDevices(devices) {
     message.innerHTML += 
            "DeviceInfo: "  
            + deviceInfo.kind 
-           + ": " + deviceInfo.label + ", " + deviceInfo.deviceId + "<br/>";
+           + ": " + option.txt + ", " + option.value + "<br/>";
 
   } 
 
