@@ -1,0 +1,63 @@
+https://webrtc.org/support/overview?hl=en
+
+https://developers.google.com/web/updates/2015/10/media-devices
+(too old?)
+
+https://github.com/webrtc/samples/blob/gh-pages/src/content/devices/multi/js/main.js
+
+https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/webrtc-integration.html
+
+https://developers.google.com/web/fundamentals/media/recording-audio
+
+https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia
+
+https://whatwebcando.today/camera-microphone.html
+
+https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery
+
+Screen share
+https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API
+getDisplayMedia()
+
+https://stackoverflow.com/questions/19382444/is-it-possible-broadcast-audio-with-screensharing-with-webrtc
+
+https://github.com/webrtcHacks/adapter
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/adapter.js?language=en-US
+
+++++++++++++++++;;
+Server
+https://github.com/meetecho/janus-gateway
+aptitude install libmicrohttpd-dev libjansson-dev \
+	libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev \
+	libopus-dev libogg-dev libcurl4-openssl-dev liblua5.3-dev \
+	libconfig-dev pkg-config gengetopt libtool automake
+
+missing
+  libsrtp-dev ==> libsrtp2-dev
+
+(mason)
+git clone https://gitlab.freedesktop.org/libnice/libnice
+cd libnice
+meson --prefix=/usr build && ninja -C build && sudo ninja -C build install
+----------
+git clone https://github.com/meetecho/janus-gateway.git
+cd janus-gateway
+
+sh autogen.sh
+./configure --prefix=/opt/janus
+make
+(sudo) make install
+(sudo) make configs
+---------
+janus -b --log-file=/var/log/janus.log --pid-file=/var/run/janus.pid
+Ports
+udp6       0      0 [::]:5002               [::]:*                              68128/./janus       
+udp6       0      0 [::]:5004               [::]:*                              68128/./janus 
+tcp6       0      0 :::8088                 :::*                    LISTEN      68128/./janus  
+-------
+Documentation: https://janus.conf.meetecho.com/docs/pages.html
+
+public STUN servers (2021)
+https://ourcodeworld.com/articles/read/1536/list-of-free-functional-public-stun-servers-2021
+
+

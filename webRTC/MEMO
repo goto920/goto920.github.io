@@ -1,0 +1,22 @@
+constraints
+navigator.mediaDevices.getUserMedia()
+navigator.mediaDevices.getDisplayMedia()
+RCPPeerConnection
+https://webrtc.github.io/samples/
+
+Packet size 1200 + overhead
+DTLS off?
+https://stackoverflow.com/questions/26924430/how-can-i-change-the-default-codec-used-in-webrtc
+
+MediaRecorder
+https://mozdevs.github.io/MediaRecorder-examples/
+
+Agent detection
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+
+MediaDevice selection
+https://developers.google.com/web/updates/2015/10/media-devices
+https://www.twilio.com/blog/choosing-cameras-javascript-mediadevices-api-html
+
+https://webrtc.github.io/samples/src/content/devices/input-output/
+ source: https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output
