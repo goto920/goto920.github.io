@@ -62,7 +62,6 @@ function gotDevices(devices) {
     const deviceInfo = devices[i];
     const option = document.createElement('option');
     option.value = deviceInfo.deviceId;
-   
 
     if (deviceInfo.kind === 'audioinput') {
       option.text = deviceInfo.label 
@@ -83,7 +82,7 @@ function gotDevices(devices) {
     message.innerHTML += 
            "DeviceInfo: "  
            + deviceInfo.kind 
-           + ": " + option.txt + ", " + option.value + "<br/>";
+           + ": " + option.text + ", " + option.value + "<br/>";
 
   } 
 
