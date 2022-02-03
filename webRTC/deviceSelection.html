@@ -12,6 +12,14 @@ because navigator.mediaDevices.enumerateDevices() does not work as expected.
 This is a simplified example code for learning how-to.
 </p>
 
+<OL>
+<LI>enumerateDevices() works only with https connection.
+(file:/// is OK with Firefox)
+<LI>getUserMedia() then enumerateDevices() without closing the stream got from
+getUserMedia()
+<LI>Close each track of the stream when device selection has been changed.
+</OL>
+
 Reference implementation:  
 <a href="https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output">
 https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output</a>
@@ -67,6 +75,8 @@ function gotDevices(devices) {
     } else {
       console.log('Other kind of device: ', deviceInfo); 
     }
+
+    message += "DeviceInfo: " + option.label + ", " + option.value; 
   } 
 
   // This part is difficult to understand 
@@ -91,7 +101,7 @@ function attachSinkId(element, sinkId) {
        })
       .catch(error => {
         console.error(error);
-        audioSrcSelector.selectedIndex = 0;
+        audioDstSelector.selectedIndex = 0;
       });
   } else {
     console.warn('Browser NOT support audio output selection');
