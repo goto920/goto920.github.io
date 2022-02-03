@@ -83,9 +83,24 @@ navigator.mediaDevices.enumerateDevices()
   .catch(handleError);
 
 function attachSinkId(element, sinkId) {
+
+  if (typeof element.sinkId !== 'undefined') {
+    element.setSinkId(sinkId)
+      .then(() => {
+         console.log (`AudioDestination attached to ${sinkId}`);
+       })
+      .catch(error => {
+        console.error(error);
+        audioSrcSelector.selectedIndex = 0;
+      });
+  } else {
+    console.warn('Browser NOT support audio output selection');
+  }
 }
 
 function changeAudioDestination() {
+  const audioDestination = audioDstSelector.value;
+  attachSinkId(localVideo, audioDestination);
 }
 
 function gotStream(stream) {
