@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>peer connection in a browser audio only</title>
+</head>
+<body>
+<h1>peer connection in a browser audio only</h1>
+
+Audio file: <input type="file" id="audioFile" 
+accept="audio/*" onchange="loadFile()"/><br/>
+webRTC transport: 
+<label><input type="radio" name="channels" 
+value="1" onclick = "setChannels()">mono</label>
+<label><input type="radio" name="channels" 
+value="2" checked onclick = "setChannels()"/>
+stereo</label>
+/ bitrate (bps) <select id="bitrateSelector" onchange="setBitRate()">
+<option value="256000">256</option>
+<option value="128000" selected>128 </option>
+<option value="64000">64</option>
+<option value="32000">32</option>
+</select>
+<select id="codecPreferences" disabled>
+  <option selected value="">Default</option>
+</select>
+</div>
+<hr/>
+<div>Local audio from file: </div>
+<audio id="localAudio" controls muted></audio>
+<div>Remote audio: </div>
+<audio id="remoteAudio" autoplay controls></audio>
+<hr/>
+<button id="callButton" onclick="call()">Call</button>&nbsp;&nbsp;
+<button id="startButton" onclick="start()" disabled>Start</button>&nbsp;&nbsp;
+<button id="stopButton" onclick="stop()" disabled>Stop</button>&nbsp;&nbsp;
+<button id="hangUpButton" onclick="hangup()" disabled>Hang up</button>
+<hr/>
+<script>
+'use strict';
+
+const audioFile = document.getElementById("audioFile");
+const channelsRadio = document.getElementsByName("channels");
+const bitrateSelector = document.getElementById("bitrateSelector");
+const localAudio = document.getElementById("localAudio");
+
+const callButton = document.getElementById("callButton");
+const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stoptButton");
+const hangUpButton = document.getElementById("hangUpButton");
+
+// defaults
+let audioSource = null;
+let channels = 2;
+let bitrate = 128000;
+
+// RTC parameters
+const servers = null;
+const offerOptions = {
+  offerToReceiveAudio: 1,
+  offerToReceiveVideo: 0,
+  voiceActivityDetection: false
+};
+
+// global vars
+let caller = null;
+let callee = null;
+let localStream = null;
+
+const supportsSetCodecPreferences = window.RTCRtpTransceiver &&
+  'setCodecPreferences' in window.RTCRtpTransceiver.prototype;
+const codecPreferences = document.getElementById("codecPreferences");
+
+
+// Not supported on Firefox
+if (supportsSetCodecPreferences) {
+  const {codecs} = RTCRtpSender.getCapabilities('audio');
+  console.log("audio codecs\n" 
+    + JSON.stringify(RTCRtpSender.getCapabilities('audio')));
+
+  codecPreferences.style.display = 'none';
+
+  codecs.forEach(codec => {
+    if (['audio/CN', 'audio/telephone-event'].includes(codec.mimeType)) {
+      return;
+    }
+    const option = document.createElement('option');
+    option.value = (codec.mimeType + ' ' + codec.clockRate + ' ' +
+      (codec.sdpFmtpLine || '')).trim();
+    option.innerText = option.value;
+    codecPreferences.appendChild(option);
+  });
+  codecPreferences.disabled = false;
+} else {
+  console.warn("setCodecPreferences is NOT supported");
+  codecPreferences.style.display = 'none';
+}
+
+function loadFile(){
+  audioSource = URL.createObjectURL(audioFile.files[0]);
+  localAudio.src = audioSource; 
+}
+
+function setChannels(){
+  for (let i=0; i < channelsRadio.length; i++){
+    if(channelsRadio[i].checked) {
+      channels = channelsRadio[i].value;
+      break;
+    }
+  } 
+  console.log('channels: ' + channels);
+}
+
+function setBitRate(){
+  console.log(bitrateSelector.value);
+  bitrate = bitrateSelector.value;
+}
+
+function call(){ 
+  console.log("Calling");
+
+  caller = new RTCPeerConnection(servers);
+  console.log("Caller peer connection created");
+  caller.onicecandidate = (e) => callerOnIceCandidate(e);
+
+  callee = new RTCPeerConnection(servers);
+  console.log("Callee peer connection created");
+  callee.onicecandidate = (e) => calleeOnIceCandidate(e);
+  callee.ontrack = (e) => calleeOnTrack(e);
+
+  callButton.disabled = true;
+  startButton.disabled = false;
+  hangUpButton.disabled = false;
+}
+
+// callbacks
+function callerOnIceCandidate (e) {
+  callee.addIceCandidate(e.candidate)
+    .then (() => console.log("callee addIceCandidate"))
+    .catch(e => console.error("callee addIceCandidate: " + e))
+}
+
+function calleeOnIceCandidate (e) {
+  caller.addIceCandidate(e.candidate)
+    .then (() => console.log("caller addIceCandidate"))
+    .catch(e => console.error("caller addIceCandidate: " + e))
+}
+
+function calleeOnTrack (e) {
+  console.log('Received remote stream');  
+  if (remoteAudio.srcObject !== e.streams[0]) {
+    remoteAudio.srcObject = e.streams[0];
+  }
+}
+
+function start(){ 
+  const audio = new Audio(audioSource);
+
+  if ('captureStream' in audio) {
+    localStream = audio.captureStream();
+    console.log ("captureStream");
+  } else if ('mozCaptureStream' in audio) {
+    localStream = audio.mozCaptureStream();
+    console.log ("mozCaptureStream");
+  } else {
+    console.error("missing captureStream");
+  }
+
+  const audioTracks = localStream.getAudioTracks();
+  if (audioTracks.length > 0) {
+    console.log(`Using Audio: ${audioTracks[0].label}`);
+  }
+  localStream.getTracks().forEach(track => caller.addTrack(track, localStream));
+  console.log("Added local stream to caller peer connection");
+
+  caller.createOffer(offerOptions)
+    .then((desc) => callerSendOffer(desc))
+    .catch((e) => console.error("createOffer" + e));
+}
+
+function callerSendOffer(desc){
+  console.log("Offer from caller");
+  console.log(JSON.stringify(desc));
+
+  caller.setLocalDescription(desc)
+    .then( () => {
+       callee.setRemoteDescription(desc)
+         .then(() => {return callee.createAnswer() 
+            .then((desc) => callerReceiveAnswer(desc))
+            .catch((e) => console.error(e));
+         })
+         .catch ((e) => console.error(e));
+    })
+    .catch ((e) => console.error(e));
+}
+
+function callerReceiveAnswer(desc){
+  console.log("Answer from callee\n" + JSON.stringify(desc));
+  callee.setLocalDescription(desc)
+    .then( () => caller.setRemoteDescription(desc))
+    .catch (e => console.log("callee setLocalDescription" + e))
+}
+
+function stop(){ }
+function hangup(){ 
+  caller.close(); caller = null;
+  callee.close(); callee = null;
+}
+
+</script>
+Based on: 
+<a href="https://webrtc.github.io/samples/src/content/peerconnection/audio/">
+attps://webrtc.github.io/samples/src/content/peerconnection/audio/</a>
+<hr/>
+</body>
+</html>
