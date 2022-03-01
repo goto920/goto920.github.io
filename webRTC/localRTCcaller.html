@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>webRTC localCcaller Test</title>
+</head>
+<body>
+<h1>webRTC localCcaller Test</h1>
+
+<button id="createOfferButton" onclick="createOffer()">create offer</button>
+
+<hr/>
+<h2>Offering a connection to peer</h2>
+
+<p>Copy and paste the offer below in the textarea of the peer.
+Then click "offerSent".</p>
+<textarea id="offerText" rows="5" cols="60" readonly 
+placeholder = "please wait for a few seconds"></textarea>
+<button id="offerSentButton" onclick="offerSent()" disabled>
+offerSent</button>
+<hr/>
+
+<p>Copy and paste the answer in the textarea of the peer in the textbox below
+and press "gotAnswer". </p>
+<textarea id="answerText" rows="5" cols="60"
+placeholder = "paste the answer from peer"></textarea>
+<button id="gotAnswerButton" onclick="gotAnswer()" disabled>
+gotAnswer</button>
+<hr/>
+
+<h2>Debug message</h2>
+<p id="message"></p>
+<hr/>
+
+<script>
+'use strict';
+// const createOfferButton = getElementById('createOfferButton');
+const offerText = document.getElementById('offerText');
+const offerSentButton = document.getElementById('offerSentButton');
+const answerText = document.getElementById('answerText');
+const gotAnswerButton = document.getElementById('gotAnswerButton');
+
+const pc = new RTCPeerConnection(); // no-ICE server candidate
+pc.onconnectionstatechange = function(event){
+  message.innerHTML += 'onconnectionstatechange';
+}
+pc.ondatachannel = function(event){
+  message.innerHTML += 'ondatachannel';
+}
+pc.onicecandidate = function(event) {
+  message.innerHTML += 'onicecandidate';
+}
+pc.onicecandidateerror = function (event) {
+  message.innerHTML += 'onicecandidateerror';
+} 
+pc.oniceconnectionstatechange = function (event) {
+  message.innerHTML += 'oniceconnectionstatechange';
+} 
+pc.onicegatheringstatechange = function (event) {
+  message.innerHTML += 'onicegatheringstatechange';
+} 
+pc.onnegotiationneeded = function (event) {
+  message.innerHTML += 'onnegotiationneeded';
+} 
+pc.signalingstatechange = function (event) {
+  message.innerHTML += 'onsignalingstatechange';
+} 
+pc.ontrack = function (event) {
+  message.innerHTML += 'ontrack';
+} 
+
+function createOffer(){
+ pc.createOffer()
+ .then( offer => {
+   pc.setLocalDescription(offer);
+   offerText.value = JSON.stringify(offer);
+   offerSentButton.disabled = false;
+ })
+ .catch (err => console.log(err))
+}
+
+function offerSent(){
+}
+
+function gotAnswer(){
+}
+
+</script>
+</body>
+</html>

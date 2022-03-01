@@ -3,6 +3,7 @@ navigator.mediaDevices.getUserMedia()
 navigator.mediaDevices.getDisplayMedia()
 RCPPeerConnection
 https://webrtc.github.io/samples/
+==> the best
 
 Packet size 1200 + overhead
 DTLS off?
@@ -20,3 +21,115 @@ https://www.twilio.com/blog/choosing-cameras-javascript-mediadevices-api-html
 
 https://webrtc.github.io/samples/src/content/devices/input-output/
  source: https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output
+
+https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/facingMode
+
+https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints#example__constraint_exerciser
+
+++++++++++
+Audio stream play
+https://stackoverflow.com/questions/52263471/how-to-create-a-mediastream-from-a-uploaded-audio-file-or-a-audio-file-url-using
+
+ audio = new Audio(URL);
+ stream = audio.captureStream()
+
+https://jsfiddle.net/shimondoodkin/7zmhsg30/20/
+
+Termination
+https://www.geeksforgeeks.org/how-to-terminate-a-script-in-javascript/
+
+URL (window.location.href)
+https://www.tutorialrepublic.com/faq/how-to-get-the-current-url-with-javascript.php
+if (location.protocol !== 'https:') (or 'https'
+
+https://javascript.plainenglish.io/build-audio-video-and-screen-recorder-for-web-with-javascript-583584dd3c75
+
+https://github.com/dhruv479/recorder/blob/master/index.html
+
+using canvus
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Manipulating_video_using_canvas
+
+createOffer()/createAnswer()、RTCSessionDescription()
+setOffier(sessionDescription)
+https://qiita.com/yusuke84/items/43a20e3b6c78ae9a8f6c
+https://www.html5rocks.com/en/tutorials/webrtc/basics/
+
+Webtransport
+https://centrifugal.github.io/centrifugo/blog/quic_web_transport/
+
+delay test
+https://murillo128.github.io/web-audio-rtc-test/
+
+
+Python webRTC
+https://github.com/aiortc/aiortc
+
+Audio quality
+https://webrtchacks.com/red-improving-audio-quality-with-redundancy/
+a=fmtp:111 minptime=10;useinbandfec=1; stereo=1; maxaveragebitrate=510000
+++++++
+React Native screen capture
+https://github.com/yutasuzuki/react-native-record-screen
+入門
+https://qiita.com/nskydiving/items/41e446ef5c821359ab79
+
+Flutter
+https://codezine.jp/article/detail/12718?p=4
+
+SDP
+https://webrtcforthecurious.com/docs/02-signaling/
+
+Sync
+https://chowdera.com/2021/03/20210324153121407n.html
+
+App
+https://github.com/chrisjohndigital/TutorRoom
+
+Manual offer/answer
+https://github.com/lesmana/webrtc-without-signaling-server
+
+JS functions
+https://www.rtcmulticonnection.org/
+
++++++++++++++++
+var senders = rtcPeerConnection.getSenders();
+
+    sender.getParameters();
+
+STUN server (node.js)
+https://github.com/enobufs/stun
+
+SDP
+https://webrtcforthecurious.com/ja/docs/02-signaling/
+
+Sample App
+https://myvideochat1234.herokuapp.com/index.html
+
+https://github.com/avoup/webrtc-video-conference
+
+https://blog.devgenius.io/how-to-create-a-video-chat-application-with-a-custom-stun-and-turn-server-8c6258542324
+
+STUN server with RoomID
+https://github.com/coturn/coturn
+
+RFC 3264,6157,8843
+
+http://www.juandebravo.com/webrtc-repo/sdp-offer
+
+++++++++++
+SDP
+v= 0 (version)
+o= (originator) (-: no username)
+s= (session name) (-: session name)
+(optional) 
+i= (short info. session title)
+e= (email)
+p= (phone)
+c= (connection info)
+b= (bandwidth)
+z= (time zone)
+k= (encryption key)
+++++++++++++++++
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling
+
+https://webrtc.org/getting-started/overview

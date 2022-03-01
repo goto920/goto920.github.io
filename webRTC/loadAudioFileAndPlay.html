@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Record MediaStream video and Export</h1>
+
+<input type='file' id='audioFile' accept='audio/*' onchange='loadFile()' placeholder='select an audio file'>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script>
+const audioFile = document.getElementById('audioFile');
+
+function loadFile(){
+   const file = audioFile.files;
+   // console.log(file);
+   const audio = new Audio(file); 
+   audio.src = URL.createObjectURL(file[0]);
+   audio.play();
+   // const stream = audio.mozCaptureStream();
+}
+
+</script>
+
+</body>
+</html>

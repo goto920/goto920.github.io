@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>webRTC localConnection Callee Test</title>
+</head>
+<body>
+<h1>webRTC localConnection Callee Test</h1>
+
+<button id="createOfferButton" onclick="createOffer()">create offer</button>
+
+<hr/>
+<h2>Offering a connection to peer</h2>
+
+<p>Copy and paste the offer the textarea of the caller.
+Then click "offer".</p>
+<textarea id="offerText" rows="5" cols="60" readonly 
+placeholder = "paste the offer text"></textarea>
+<button id="offerPastedButton" onclick="offerPasted()">
+Offer Pasted</button>
+<hr/>
+
+<p>Copy and paste the answer in the textarea below to the caller textarea. 
+and press "answerSent". </p>
+<textarea id="answerText" rows="5" cols="60"
+placeholder = "wait a second."></textarea>
+<button id="answerSentButton" onclick="answerSent()">
+Answer Sent</button>
+<hr/>
+
+<h2>Debug message</h2>
+<p id="message"></p>
+<hr/>
+
+<script>
+const offerPastedButton = getElementById('offerPastedButton');
+const offerText = document.getElementById('offerText');
+const offerSentButton = document.getElementById('offerSentButton');
+const answerText = document.getElementById('answerText');
+
+const pc = new RTCPeerConnection(); // no-ICE server candidate
+pc.onconnectionstatechange = function(event){
+  message.innerHTML += 'onconnectionstatechange';
+}
+pc.ondatachannel = function(event){
+  message.innerHTML += 'ondatachannel';
+}
+pc.onicecandidate = function(event) {
+  message.innerHTML += 'onicecandidate';
+}
+pc.onicecandidateerror = function (event) {
+  message.innerHTML += 'onicecandidateerror';
+} 
+pc.oniceconnectionstatechange = function (event) {
+  message.innerHTML += 'oniceconnectionstatechange';
+} 
+pc.onicegatheringstatechange = function (event) {
+  message.innerHTML += 'onicegatheringstatechange';
+} 
+pc.onnegotiationneeded = function (event) {
+  message.innerHTML += 'onnegotiationneeded';
+} 
+pc.signalingstatechange = function (event) {
+  message.innerHTML += 'onsignalingstatechange';
+} 
+pc.ontrack = function (event) {
+  message.innerHTML += 'ontrack';
+} 
+
+function offerPasted(){
+  offerPastedButton.disabled = true;
+  offerText.readOnly = true;
+  pc.setRemoveDescription(JSON.parse(offerText.value)
+  .then (
+     pc.createAnswer()
+     .then (answer => {
+        pc.setLocalDescription(answer)
+     }) 
+     .catch(err => console.log(err));
+  )
+  .catch (err => console.log(err));
+}
+
+function answerSent(){
+}
+
+</script>
+</body>
+</html>

@@ -57,7 +57,12 @@ let options = {
 let recorder = null;
 let exportData = null;
 function record() {
-  recorder = new MediaRecorder(stream);
+  let options = {
+     audioBitsPerSecond: 128000,
+     videoBitsPerSecond: 128000,
+     mimeTyle: 'video/webm'
+  };
+  recorder = new MediaRecorder(stream, options);
   recorder.start();
   recorder.ondataavailable = function(e) { 
     exportData = e.data;

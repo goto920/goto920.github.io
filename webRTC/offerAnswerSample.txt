@@ -1,0 +1,16 @@
+Offer
+---------------------
+{"type":"offer",
+  "sdp":
+  "v=0\r\n
+  o=mozilla...THIS_IS_SDPARTA-96.0 6509617103989283950 0 IN IP4 0.0.0.0\r\n
+  s=-\r\n
+  t=0 0\r\n
+  a=fingerprint:sha-256 9B:3D:EA:F8:9D:DC:6A:1F:95:53:2F:32:D5:CA:BB:B2:F3:0F:32:C9:CF:33:B2:22:C1:ED:AC:DF:A3:D0:49:4B\r\n
+  a=ice-options:trickle\r\n
+  a=msid-semantic:WMS *\r\n"
+}
+---------------------
+Answer
+----------------
+----------------
