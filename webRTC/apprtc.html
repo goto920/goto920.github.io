@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WebRTC samplesのapprtc解説</title>
+</head>
+<body>
+<h1>WebRTC samplesのapprtc解説</h1>
+
+ソースコード <a href="https://github.com/webrtc/apprtc/">
+https://github.com/webrtc/apprtc/</a>
+
+
+<h2>README.md 概要</h2>
+
+<h3>Developement</h3>
+<ul>
+<li>The development AppRTC server http://locahost:8080 
+<li>動作環境: Node.js, Python PIP, Grunt website
+<li>Node.jsとGruntがあれば、npm install と pip install -r requirements.txt
+<LI>最初、更新時の再コンパイルはgrunt build
+<li>Google App Engine SDK dev server: dev_appserver.py ./out/app_engine
+</ul>
+
+<h4>やってみる (Ubuntu 20.04LTS)</h4>
+
+<OL>
+<LI>git clone https://github.com/webrtc/apprtc.git -- OK
+<li>apprtcで、npm install -- OK
+<li>grunt -- ないので 
+<pre>
+(aptで入れたnode.jsじゃない場合、apt install はだめ)
+sudo npm install -g grunt-cli
+sudo npm install -g grunt
+npm install coffeescript // 足りなかった
+</pre>
+<li>grunt build -- OK
+<li>Google App Engine SDK dev server って何? (Google Cloudで使う場合の話)
+<pre>
+https://cloud.google.com/sdk/docs/install-sdk
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-374.0.0-linux-x86_64.tar.gz
+展開
+~/ に google-cloud/ をmv
+install.sh
+// gcloud init (実際にgcloudを使いに行くのでやめ
+dev_appserver.pyはインストールされた
+</pre>
+<li>dev_appserver.py out/app_engine -- 動いた 
+</OL>
+
+<h3>Test</h3>
+<code>
+ grunt runPythonTests
+ // Warning多数
+</code>
+<hr>
+
+<h3>Deployment</h3>
+
+<UL>
+<LI>Dockerfile
+<LI>Manual
+<ol>
+<li> Clone repo
+<li> Collider instructions
+<li> Install and start Coturn TURN server
+<li> Open src/app_engine/constants.py
+</ol>
+<li>その他色々大変そう
+</ul>
+
+<hr>
+goto at kmgoto.jp
+</body>
+</html>
