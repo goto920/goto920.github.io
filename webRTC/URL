@@ -60,4 +60,8 @@ Documentation: https://janus.conf.meetecho.com/docs/pages.html
 public STUN servers (2021)
 https://ourcodeworld.com/articles/read/1536/list-of-free-functional-public-stun-servers-2021
 
+(simple STUN)
+https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/ 
 
+(websocket client and server)
+https://github.com/webRTC-io/webRTC.io

@@ -10,7 +10,6 @@
 ソースコード <a href="https://github.com/webrtc/apprtc/">
 https://github.com/webrtc/apprtc/</a>
 
-
 <h2>README.md 概要</h2>
 
 <h3>Developement</h3>
@@ -47,7 +46,10 @@ dev_appserver.pyはインストールされた
 </pre>
 <li>dev_appserver.py out/app_engine -- 動いた 
 </OL>
+未完成な感じだ。
+コードを読んだところ色々な操作があるが、実際には表示されない。
 
+<hr>
 <h3>Test</h3>
 <code>
  grunt runPythonTests
@@ -68,6 +70,210 @@ dev_appserver.pyはインストールされた
 </ol>
 <li>その他色々大変そう
 </ul>
+
+<h3>Docker</h3>
+
+使うのが久しぶりで使い方を忘れた。
+<hr>
+<pre>
+docker build .  (Dockerfileに書いてあるとおり)
+docker images (一覧で確認。名前はついていないので番号で)
+
+REPOSITORY    TAG                 IMAGE ID       CREATED          SIZE
+<none>        <none>              1d9e8206b40f   20 minutes ago   1.96GB
+golang        1.17.5-alpine3.15   d8bf44a3f6b4   3 months ago     315MB
+hello-world   latest              d1165f221234   12 months ago    13.3kB
+
+docker tag 1d9e8206b40f apprtc:20220311 で REP:TAGを指定
+
+docker run -d -p 8080:8080 apprtc:20220311 // background 実行
+docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+6604139eedb9   apprtc:20220311   "/bin/sh -c /go/star…"   26 minutes ago   Up 26 minutes   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   sleepy_dirac
+
+docker exec -it 6604139eedb9 ls
+
+docker exec -it 6604139eedb9 netstat -an
+
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      
+tcp        0      0 127.0.0.1:41603         0.0.0.0:*               LISTEN      
+tcp        0      0 127.0.0.1:22509         0.0.0.0:*               LISTEN      
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      
+tcp        0      0 :::8089                 :::*                    LISTEN      
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ]         DGRAM                    321657 
+
+docker stop 6604139eedb9
+
+docker run -d -p 8080:8080 -p 443:443 apprtc:20220311 // background 実行
+
+Firefox client
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://appr.tc/v1alpha/iceconfig?key=. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing). Status code: 404.
+Firefox can’t establish a connection to the server at wss://apprtc-ws.webrtc.org/ws.
+--- 修正が必要
+
+docker -s -a
+docker ps -a
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS                        PORTS                                                                              NAMES
+3b5158b9de9f   apprtc:20220311   "/bin/sh -c /go/star…"   10 minutes ago   Up 10 minutes                 0.0.0.0:443->443/tcp, :::443->443/tcp, 0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   zen_engelbart
+6604139eedb9   apprtc:20220311   "/bin/sh -c /go/star…"   42 minutes ago   Exited (137) 11 minutes ago                                                                                      sleepy_dirac
+76077ced198d   apprtc:20220311   "-d"                     43 minutes ago   Created                       0.0.0.0:8080->8080/tcp, :::8080->8080/tcp                                          musing_edison
+docker rm musing_edison 
+</pre>
+<hr>
+修正: githubで検索 
+Collider:
+https://github.com/webrtc/apprtc/blob/master/src/collider/collidermain/main.go#L16
+var roomSrv = flag.String("room-server", "https://your.apprtc.server", "The origin of the room server")
+
+<pre>
+
+1) 
+apprtc-ws は、src/app_engine/constants.py
+appr.tc/v1alpha/iceconfigは3箇所
+src/web_app/tml/params.html
+src/app_engine/constants.py
+src/collider/collidermain/main.go
+
+== Docker imageを編集 
+https://blog.yfsakai.com/posts/2021-08-16-change-code-in-docker-image-directly/
+または、DockerFileを編集
+
+2) CORS header ‘Access-Control-Allow-Origin’ missing 
+これは多分1)でよそにいったからだめなだけ
+
+Access-Control-Allow-Origin: * をHTTPヘッダに
+src/collider/collider/collider.go にははいっているが
+</pre>
+<hr>
+
+<h2>Server code (Python) </h2>
+
+<pre>
+src/app_engine/apprtc.py エントリポイント?
+
+app = webapp2.WSGIApplication([
+    ('/', MainPage),
+    ('/a/', analytics_page.AnalyticsPage),
+    ('/compute/(\w+)/(\S+)/(\S+)', compute_page.ComputePage),
+    ('/join/([a-zA-Z0-9-_]+)', JoinPage),
+    ('/leave/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)', LeavePage),
+    ('/message/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)', MessagePage),
+    ('/params', ParamsPage),
+    ('/v1alpha/iceconfig', IceConfigurationPage),
+    ('/r/([a-zA-Z0-9-_]+)', RoomPage),
+], debug=True)
+
+class MainPage(webapp2.RequestHander) // webapp2.RequestHandlerの子クラス
+   self.write_response('index_template.html', params)
+
+class JoinPage(webapp2.RequestHandler):
+   def post(self, room_id):
+</pre>
+<hr>
+<h2>Client code</h2>
+こちらのほうがわかりやすいか?
+
+<hr>
+<pre>
+// &lt; &gt;は省略
+web_app/html/index_template.html
+div id="videos"
+    video id="mini-video" autoplay playsinline muted
+    video id="remote-video" autoplay playsinline
+    video id="local-video" autoplay playsinline muted
+/div
+
+id="room-id-input-div"
+        input type="text" id="room-id-input" autofocus
+      div id="room-id-input-buttons"
+        button id="join-button" JOIN
+        button id="random-button" RANDOM
+      /div>
+
+div id="confirm-join-div" class="hidden"
+   1) button id="confirm-join-button" JOIN
+/div
+
+ button id="rejoin-button" REJOIN
+ button id="new-room-button" NEW ROOM
+
+  <script type="text/javascript">
+    var loadingParams = { // from the server?
+      errorMessages: {{ error_messages }},
+      iceServerRequestUrl: '{{ ice_server_url }}',
+      iceServerTransports: '{{ ice_server_transports }}',
+      wssUrl: '{{ wss_url }}',
+      wssPostUrl: '{{ wss_post_url }}',
+      // 値がどこで定義されたか不明 (サーバから?)
+    };
+
+ initialize() -- appController = new AppController(loadingParams);
+
+<hr>
+AppController: The controller that connects the UI and the model "Call". It owns Call, InfoBox and RoomSelection.
+
+-- appcontroller.js -- new AppController(loadingparams)
+  2) this.roomSelection_.onRoomSelected = function(roomName) {
+      this.createCall_(); // no params?
+      this.finishCallSetup_(roomName);
+    createCall()
+      this.call_ = new Call(this.loadingParams_);
+  
+-- roomselection.js
+  roomSelectionJoinButton
+  1) onJoinButton -- loadRoom -- onRoomSelected (callback)
+
+<hr>
+Call: Manages everything needed to make a call. It owns SignalingChannel and PeerConnectionClient.
+-- call.js
+ 3) Call(params) -- roomServer
+    this.channel_ = new SignalingChannel(params.wssUrl, params.wssPostUrl);
+
+
+ 5)  onmessage = this.onRecvSignalingChannelMessage
+     this.maybeCreatePcClientAsync_()
+       .then(this.pcClient_.receiveSignalingMessage(msg));
+      send?
+
+
+<hr>
+SignalingChannel: Wrapper of the WebSocket connection.
+-- signalingchannel.js
+Server is Collider in Go
+
+4) this.websocket_ = new WebSocket(this.wssUrl_);
+  onopen, onerror, onclose,
+  onmessage (receive)
+    message = parseJSON(event.data)
+    this.onmessage(message.msg); // callback in Call?
+
+startSignaling (called from
+
+send(message)
+  wssMessage = {cmd: 'send', message} -- msgString = JSON.stringify()
+   this.websocket_.send(msgString);
+
+<hr>
+PeerConnectionClient: Wrapper of RTCPeerConnection.
+-- peerconnectionclient.js
+
+<hr>
+InfoBox: Wrapper of the info div utilities.
+
+<hr>
+RoomSelection: Wrapper for the room selection UI. It owns Storage.
+-- roomselection.js
+
+Storage: Wrapper for localStorage/Chrome app storage API.
+
+</pre>
+<hr>
+
 
 <hr>
 goto at kmgoto.jp
