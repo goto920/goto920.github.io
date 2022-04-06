@@ -16,6 +16,28 @@
 
 Currently, local connection via localhost in the browser only.
 
+<p>
+Modal window:
+If there is only one device is connected (including built-in), just close.
+If more than one camera and audio are connected, 
+you can choose a pair of camera and audio input device.
+</p>
+<img src="./modal.png" width="480">
+<hr>
+<p>
+Main menu;
+<OL>
+<li>Click "local" will begin transmission to the remote peer
+on the same brower tab. 
+<li>The communication is over loopback interface (127.0.0.1 or ::1 (IPv6)).
+<li>You may disable/enable transmission of camera track.
+<lI>Also, the mediastream received at the remote peer can be
+recorded.
+</ol>
+Mediastream blob is exported when recording is stopped.
+Blob type depends on Web browser, webm, mp4, opus (in case of audio only).
+</p>
+<img src="./menu.png" width="480">
 <hr>
 </body>
 </html>
