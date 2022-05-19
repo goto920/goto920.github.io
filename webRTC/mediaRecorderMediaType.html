@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Record MediaStream video and Export</h1>
+
+<p id="message"></p>
+<script>
+
+let message = document.getElementById("message");
+    message.innerHTML += "UserAgent: " + navigator.userAgent + "<hr>";
+
+const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+
+
+
+async function check() {
+  let exportBlob = null;
+  let chunks = [];
+
+  const constraints = {video: true, audio: true};
+
+  let stream = null;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+  } catch (err) { alert(err); }
+
+  const options = {
+/*    audioBitsPerSecond : 128000,
+    videoBitsPerSecond : 2500000
+*/
+  };
+
+  const recorder = new MediaRecorder(stream, options);
+
+  recorder.ondataavailable = function(e) {
+    console.log('ondataavailable');
+    chunks.push(e.data);
+  }
+
+  recorder.onstop = function(e){
+    console.log('onstop');
+    exportBlob = new Blob(chunks, {type: chunks[0].type});
+    message.innerHTML += "Blob type: " + exportBlob.type;
+  }
+
+  recorder.start();
+  await sleep(10000);
+  recorder.stop();
+
+}
+
+check();
+
+</script>
+</body>
+</html>
