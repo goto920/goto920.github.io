@@ -16,11 +16,15 @@ const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
 
 
 
-async function check() {
+async function check(video) {
   let exportBlob = null;
   let chunks = [];
 
-  const constraints = {video: true, audio: true};
+let constranints = {};
+if (video)
+  constraints = {video: true, audio: true};
+else 
+  constraints = {video: false, audio: true};
 
   let stream = null;
   try {
@@ -43,7 +47,7 @@ async function check() {
   recorder.onstop = function(e){
     console.log('onstop');
     exportBlob = new Blob(chunks, {type: chunks[0].type});
-    message.innerHTML += "Blob type: " + exportBlob.type;
+    message.innerHTML += "Blob type: " + exportBlob.type + "<br>";
   }
 
   recorder.start();
@@ -52,7 +56,8 @@ async function check() {
 
 }
 
-check();
+check(true);
+check(false);
 
 </script>
 </body>
