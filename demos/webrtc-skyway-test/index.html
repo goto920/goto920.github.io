@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KG's demo page</title>
+</HEAD>
+<BODY>
+<H1>KG's webrtc-skyway-test</H1>
+
+<UL>
+<li><A HREF="build/">experimental latest build</A> (20220602)
+</UL>
+
+RTC signaling via SkyWay free service.
+Tested with Firefox and Chrome on Ubuntu.
+
+<OL>
+<li>Signaling via SkyWay
+<li>Two cameras support (almost done)
+<li>On/off camera track transmission (track.enabled=true/false) 
+<li>suppress black screen of disabled video at the receiver
+(videoelement.display.style = 'none' to suppress, '' to recover)
+</OL>
+Adding camera
+
+
+<HR>
+<H2>How to use</H2>
+
+<OL>
+<LI>Open two instances of this application (on two PCs).
+Using two browers on a PC is OK for a basic experiment.
+<LI>Connect additional camera (webcam) before "call" or accept a call.
+<LI>Choose cameras and audio input devices.
+<LI>Caller: Copy "localPeerId" of the other party to "remotePeerId" text field,
+then press "Call".
+<ul>
+<LI>All peer names are listed in JavaScript Console of the browser.
+</ul>
+<LI>Callee: accept (answer) is automatic. There is no way to refuse.
+Just wait.
+<LI>No hangup button available now (to be added). 
+Just close the brower tab.
+</OL>
+
+<hr>
+</body>
+</html>
